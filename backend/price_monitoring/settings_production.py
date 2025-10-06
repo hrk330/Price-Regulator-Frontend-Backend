@@ -65,9 +65,11 @@ if not REDIS_URL:
         }
     }
     
-    # Use database for Celery when Redis is not available
-    CELERY_BROKER_URL = 'db+sqlite:///celery.db'
-    CELERY_RESULT_BACKEND = 'db+sqlite:///celery.db'
+    # Use synchronous task execution when Redis is not available
+    CELERY_TASK_ALWAYS_EAGER = True  # Run tasks synchronously
+    CELERY_TASK_EAGER_PROPAGATES = True
+    CELERY_BROKER_URL = 'memory://'  # Use in-memory broker
+    CELERY_RESULT_BACKEND = 'cache+memory://'
 else:
     print(f"✅ Using Redis: {REDIS_URL}")
     
