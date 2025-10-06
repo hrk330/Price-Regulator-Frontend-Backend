@@ -33,11 +33,28 @@ CORS_ALLOWED_ORIGINS=https://your-frontend-domain.com
 1. **Connect your repository to Railpack**
 2. **Set environment variables** in Railpack dashboard
 3. **Deploy** - Railpack will automatically:
+   - Detect and install Python (if needed)
    - Install Python dependencies
    - Run database migrations
    - Collect static files
    - Create admin user
    - Start the Django server
+
+### Alternative Deployment Methods
+
+#### Option 1: Railpack (Recommended)
+- Uses `deploy.sh` script with automatic Python detection
+- Handles multiple Linux distributions
+- Automatic dependency installation
+
+#### Option 2: Docker
+- Uses `Dockerfile` for containerized deployment
+- Consistent environment across platforms
+- Built-in Python 3.12 installation
+
+#### Option 3: Manual Deployment
+- Use `start.sh` for manual server deployment
+- Requires Python 3.12+ to be pre-installed
 
 ### Post-Deployment
 

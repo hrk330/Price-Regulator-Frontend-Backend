@@ -3,17 +3,18 @@
     "version": "1.0.0",
     "description": "Price Regulation Monitoring System with Django Backend and Next.js Frontend",
     "scripts": {
-        "start": "bash start.sh"
+        "start": "bash deploy.sh",
+        "build": "bash deploy.sh"
     },
     "engines": {
         "python": "3.12"
     },
     "build": {
-        "command": "cd backend && pip install -r requirements.txt",
-        "directory": "backend"
+        "command": "bash deploy.sh",
+        "directory": "."
     },
     "start": {
-        "command": "bash start.sh",
+        "command": "bash deploy.sh",
         "directory": "."
     },
     "environment": {

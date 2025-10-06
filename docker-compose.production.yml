@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=price_monitoring.settings_production
+      - DB_NAME=${DB_NAME:-railway}
+      - DB_USER=${DB_USER:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST:-localhost}
+      - DB_PORT=${DB_PORT:-5432}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - SECRET_KEY=${SECRET_KEY:-your-secret-key-here}
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - static_volume:/app/backend/staticfiles
+      - media_volume:/app/backend/media
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=${DB_NAME:-railway}
+      - POSTGRES_USER=${DB_USER:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: .
+    command: python -m celery -A price_monitoring worker --loglevel=info
+    environment:
+      - DJANGO_SETTINGS_MODULE=price_monitoring.settings_production
+      - DB_NAME=${DB_NAME:-railway}
+      - DB_USER=${DB_USER:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST:-db}
+      - DB_PORT=${DB_PORT:-5432}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - SECRET_KEY=${SECRET_KEY:-your-secret-key-here}
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - static_volume:/app/backend/staticfiles
+      - media_volume:/app/backend/media
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
