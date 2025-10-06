@@ -89,7 +89,19 @@ $PIP_CMD install -r requirements.txt || {
 echo "🗄️ Running database migrations..."
 $PYTHON_CMD manage.py migrate || {
     echo "❌ Database migration failed!"
-    exit 1
+    echo "🔧 This might be because:"
+    echo "   1. Database environment variables are not set"
+    echo "   2. Database server is not running"
+    echo "   3. Network connectivity issues"
+    echo ""
+    echo "📋 Current environment variables:"
+    echo "   DB_NAME: ${DB_NAME:-'not set'}"
+    echo "   DB_USER: ${DB_USER:-'not set'}"
+    echo "   DB_HOST: ${DB_HOST:-'not set'}"
+    echo "   DB_PORT: ${DB_PORT:-'not set'}"
+    echo ""
+    echo "🚀 The application will use fallback configuration (SQLite) if no database is configured."
+    echo "   To use PostgreSQL, set the database environment variables."
 }
 
 # Collect static files

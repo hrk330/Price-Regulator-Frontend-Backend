@@ -9,11 +9,35 @@ pip install --upgrade setuptools wheel || echo "⚠️ Could not upgrade setupto
 
 # Wait for database to be ready
 echo "⏳ Waiting for database..."
-while ! python manage.py check --database default 2>/dev/null; do
-  echo "Database is unavailable - sleeping"
-  sleep 1
+max_attempts=30
+attempt=0
+
+while [ $attempt -lt $max_attempts ]; do
+  if python manage.py check --database default 2>/dev/null; then
+    echo "✅ Database is ready!"
+    break
+  else
+    echo "Database is unavailable - sleeping (attempt $((attempt + 1))/$max_attempts)"
+    sleep 2
+    attempt=$((attempt + 1))
+  fi
 done
-echo "✅ Database is ready!"
+
+if [ $attempt -eq $max_attempts ]; then
+  echo "❌ Database connection failed after $max_attempts attempts"
+  echo "🔧 This might be because:"
+  echo "   1. Database environment variables are not set"
+  echo "   2. Database server is not running"
+  echo "   3. Network connectivity issues"
+  echo ""
+  echo "📋 Current environment variables:"
+  echo "   DB_NAME: ${DB_NAME:-'not set'}"
+  echo "   DB_USER: ${DB_USER:-'not set'}"
+  echo "   DB_HOST: ${DB_HOST:-'not set'}"
+  echo "   DB_PORT: ${DB_PORT:-'not set'}"
+  echo ""
+  echo "🚀 Continuing with fallback configuration..."
+fi
 
 # Run database migrations
 echo "🗄️ Running database migrations..."
