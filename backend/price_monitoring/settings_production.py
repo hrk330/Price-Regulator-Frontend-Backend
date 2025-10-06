@@ -105,10 +105,54 @@ SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 
+# CSRF settings for Railway deployment
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SAMESITE = 'Lax'
+CSRF_USE_SESSIONS = False
+
+# Session settings
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'
+
 # CORS settings for production
 CORS_ALLOWED_ORIGINS = [
     "https://your-frontend-domain.com",  # Replace with your actual frontend domain
 ]
+
+# Auto-detect Railway domains
+RAILWAY_PUBLIC_DOMAIN = os.environ.get('RAILWAY_PUBLIC_DOMAIN')
+if RAILWAY_PUBLIC_DOMAIN:
+    CORS_ALLOWED_ORIGINS.append(f"https://{RAILWAY_PUBLIC_DOMAIN}")
+
+# Add Railway domains to trusted origins for CSRF
+CSRF_TRUSTED_ORIGINS = [
+    "https://your-frontend-domain.com",
+    "https://price-regulator-frontend-backend-production.up.railway.app",  # Your current Railway domain
+]
+
+if RAILWAY_PUBLIC_DOMAIN:
+    CSRF_TRUSTED_ORIGINS.append(f"https://{RAILWAY_PUBLIC_DOMAIN}")
+
+# Additional Railway domain patterns
+CSRF_TRUSTED_ORIGINS.extend([
+    "https://*.up.railway.app",  # Allow all Railway subdomains
+    "https://*.railway.app",     # Allow Railway domains
+])
+
+# CORS settings for Railway
+CORS_ALLOWED_ORIGINS.extend([
+    "https://price-regulator-frontend-backend-production.up.railway.app",
+    "https://*.up.railway.app",
+])
+
+# Allow all origins for development (remove in production)
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
+    CSRF_TRUSTED_ORIGINS = ["*"]
+    CSRF_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = False
 
 # Logging configuration
 LOGGING = {
