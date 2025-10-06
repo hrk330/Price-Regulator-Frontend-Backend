@@ -1,0 +1,28 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls static admin_list %}
+
+{% block content_title %}
+    {{ block.super }}
+    
+    {% if pending_uploads_count > 0 %}
+        <div style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 10px; margin: 10px 0; border-radius: 4px;">
+            <strong>📋 {{ pending_uploads_count }} upload(s) pending processing</strong>
+            <p style="margin: 5px 0 0 0; color: #856404;">
+                Select the pending uploads and use the "Process selected uploads" action to automatically extract and import products from PDFs.
+            </p>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block object-tools-items %}
+    {{ block.super }}
+    
+    {% if pending_uploads_count > 0 %}
+        <li>
+            <a href="#" onclick="document.querySelector('select[name=action]').value='process_selected_uploads'; document.querySelector('input[name=index]').value='0'; document.querySelector('form#changelist-form').submit(); return false;" 
+               style="background-color: #28a745; color: white; padding: 8px 12px; text-decoration: none; border-radius: 4px; font-weight: bold;">
+                🚀 Process All Pending Uploads
+            </a>
+        </li>
+    {% endif %}
+{% endblock %}

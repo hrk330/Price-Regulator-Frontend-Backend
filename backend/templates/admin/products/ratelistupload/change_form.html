@@ -1,0 +1,69 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block submit_buttons_bottom %}
+    {{ block.super }}
+    
+    {% if can_process %}
+        <div class="submit-row" style="background-color: #f8f9fa; border: 2px solid #28a745; padding: 15px; margin: 10px 0;">
+            <h3 style="color: #28a745; margin: 0 0 10px 0;">🚀 PDF Processing Actions</h3>
+            <p style="margin: 0 0 15px 0; color: #666;">This upload is ready for processing. Click the button below to automatically extract and import products from the PDF.</p>
+            
+            <div style="display: flex; gap: 10px;">
+                <a href="{% url 'admin:products_ratelistupload_process' upload.id %}" 
+                   class="button" 
+                   style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">
+                    🔄 Process PDF & Import Products
+                </a>
+                
+                <a href="{% url 'admin:products_ratelistupload_preview' upload.id %}" 
+                   class="button" 
+                   style="background-color: #17a2b8; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">
+                    👁️ Preview Products (Don't Import)
+                </a>
+            </div>
+            
+            <div style="margin-top: 10px; padding: 10px; background-color: #e9ecef; border-radius: 4px; font-size: 12px; color: #666;">
+                <strong>What happens when you click "Process PDF":</strong><br>
+                • Extracts text from your PDF<br>
+                • Finds all product-price pairs<br>
+                • Automatically categorizes products<br>
+                • Creates/updates regulated products in database<br>
+                • Updates this upload with results
+            </div>
+        </div>
+    {% elif upload.status == 'completed' %}
+        <div class="submit-row" style="background-color: #d4edda; border: 2px solid #28a745; padding: 15px; margin: 10px 0;">
+            <h3 style="color: #28a745; margin: 0 0 10px 0;">✅ Processing Completed</h3>
+            <p style="margin: 0 0 10px 0; color: #666;">
+                <strong>Total Products Found:</strong> {{ upload.total_products }}<br>
+                <strong>Successfully Imported:</strong> {{ upload.imported_products }}<br>
+                <strong>Success Rate:</strong> {{ upload.success_rate|floatformat:1 }}%
+            </p>
+            
+            <a href="{% url 'admin:products_regulatedproduct_changelist' %}" 
+               class="button" 
+               style="background-color: #007bff; color: white; padding: 8px 16px; text-decoration: none; border-radius: 4px;">
+                📦 View Imported Products
+            </a>
+        </div>
+    {% elif upload.status == 'failed' %}
+        <div class="submit-row" style="background-color: #f8d7da; border: 2px solid #dc3545; padding: 15px; margin: 10px 0;">
+            <h3 style="color: #dc3545; margin: 0 0 10px 0;">❌ Processing Failed</h3>
+            <p style="margin: 0 0 10px 0; color: #666;">
+                {% if upload.errors %}
+                    <strong>Errors:</strong><br>
+                    {% for error in upload.errors %}
+                        • {{ error }}<br>
+                    {% endfor %}
+                {% endif %}
+            </p>
+            
+            <a href="{% url 'admin:products_ratelistupload_process' upload.id %}" 
+               class="button" 
+               style="background-color: #dc3545; color: white; padding: 8px 16px; text-decoration: none; border-radius: 4px;">
+                🔄 Retry Processing
+            </a>
+        </div>
+    {% endif %}
+{% endblock %}

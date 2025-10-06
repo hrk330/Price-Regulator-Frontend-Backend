@@ -1,0 +1,5198 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "email": "admin@example.com",
+      "first_name": "",
+      "last_name": "",
+      "role": "admin",
+      "is_active": true,
+      "date_joined": "2025-10-02T10:46:59.900457+00:00"
+    },
+    {
+      "username": "investigator",
+      "email": "investigator@example.com",
+      "first_name": "",
+      "last_name": "",
+      "role": "investigator",
+      "is_active": true,
+      "date_joined": "2025-10-02T12:42:14.151512+00:00"
+    },
+    {
+      "username": "regulator",
+      "email": "regulator@example.com",
+      "first_name": "",
+      "last_name": "",
+      "role": "regulator",
+      "is_active": true,
+      "date_joined": "2025-10-02T12:42:33.855566+00:00"
+    },
+    {
+      "username": "test_admin",
+      "email": "admin@test.com",
+      "first_name": "",
+      "last_name": "",
+      "role": "admin",
+      "is_active": true,
+      "date_joined": "2025-10-06T05:36:20.933147+00:00"
+    }
+  ],
+  "regulated_products": [
+    {
+      "name": "Test Laptop",
+      "description": "Test laptop for price monitoring",
+      "gov_price": 500.0,
+      "category": "Electronics",
+      "unit": "piece",
+      "is_active": true,
+      "created_at": "2025-10-06T05:36:25.615681+00:00",
+      "updated_at": "2025-10-06T05:36:25.615681+00:00"
+    }
+  ],
+  "scraping_websites": [
+    {
+      "name": "Amazon",
+      "base_url": "https://www.amazon.com",
+      "search_url_template": "https://www.amazon.com/s?k={query}",
+      "is_active": true,
+      "scraping_config": {
+        "selectors": {
+          "url": "h2.a-size-mini a, a.a-link-normal",
+          "name": "h2.a-size-mini, span.a-size-medium",
+          "image": "img.s-image",
+          "price": "span.a-price-whole, span.a-offscreen"
+        },
+        "marketplace": "amazon",
+        "product_container_selector": "div[data-component-type=\"s-search-result\"]"
+      },
+      "rate_limit_delay": 2.0,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+      },
+      "created_at": "2025-10-06T05:35:52.556335+00:00"
+    },
+    {
+      "name": "Kissan Ghar",
+      "base_url": "https://www.kissanghar.pk/",
+      "search_url_template": "https://www.kissanghar.pk/?s={query}",
+      "is_active": true,
+      "scraping_config": {
+        "selectors": {
+          "url": "a",
+          "name": "h4, [class*=\"name\"]",
+          "image": "img",
+          "price": "[class*=\"price\"]",
+          "availability": ".stock, .availability, [class*=\"stock\"]"
+        },
+        "pagination": {
+          "next_page": ".pagination-next, .next-page, a:contains(\"Next\")"
+        },
+        "marketplace": "other",
+        "search_params": {
+          "query_param": "s"
+        },
+        "product_container_selector": ".product"
+      },
+      "rate_limit_delay": 2.5,
+      "headers": {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+        "Connection": "keep-alive",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Upgrade-Insecure-Requests": "1"
+      },
+      "created_at": "2025-10-06T05:49:40.448953+00:00"
+    },
+    {
+      "name": "Test Amazon",
+      "base_url": "https://www.amazon.com",
+      "search_url_template": "https://www.amazon.com/s?k={query}",
+      "is_active": true,
+      "scraping_config": {
+        "selectors": {
+          "url": "h2.a-size-mini a",
+          "name": "h2.a-size-mini",
+          "image": "img.s-image",
+          "price": "span.a-price-whole"
+        },
+        "marketplace": "amazon",
+        "product_container_selector": "div[data-component-type=\"s-search-result\"]"
+      },
+      "rate_limit_delay": 2.0,
+      "headers": {
+        "User-Agent": "Test Bot"
+      },
+      "created_at": "2025-10-06T05:36:22.448545+00:00"
+    },
+    {
+      "name": "Test Website",
+      "base_url": "https://example.com",
+      "search_url_template": "https://example.com/search?q={query}",
+      "is_active": true,
+      "scraping_config": {
+        "price_selector": ".price",
+        "title_selector": ".title",
+        "product_selector": ".product"
+      },
+      "rate_limit_delay": 1.0,
+      "headers": {},
+      "created_at": "2025-10-06T06:10:13.270162+00:00"
+    },
+    {
+      "name": "Walmart",
+      "base_url": "https://www.walmart.com",
+      "search_url_template": "https://www.walmart.com/search?q={query}",
+      "is_active": true,
+      "scraping_config": {
+        "selectors": {
+          "url": "a[data-automation-id=\"product-title\"]",
+          "name": "span[data-automation-id=\"product-title\"]",
+          "image": "img[data-testid=\"product-image\"]",
+          "price": "span[data-automation-id=\"product-price\"]"
+        },
+        "marketplace": "walmart",
+        "product_container_selector": "div[data-testid=\"item-stack\"]"
+      },
+      "rate_limit_delay": 2.0,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+      },
+      "created_at": "2025-10-06T05:35:54.454255+00:00"
+    },
+    {
+      "name": "eBay",
+      "base_url": "https://www.ebay.com",
+      "search_url_template": "https://www.ebay.com/sch/i.html?_nkw={query}",
+      "is_active": true,
+      "scraping_config": {
+        "selectors": {
+          "url": "a.s-item__link",
+          "name": "h3.s-item__title",
+          "image": "img.s-item__image",
+          "price": "span.s-item__price"
+        },
+        "marketplace": "ebay",
+        "product_container_selector": "div.s-item"
+      },
+      "rate_limit_delay": 1.5,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+      },
+      "created_at": "2025-10-06T05:35:53.492104+00:00"
+    }
+  ],
+  "product_search_lists": [
+    {
+      "name": "fertilizer test",
+      "description": "Essential agricultural products to monitor",
+      "products": [
+        "fertilizer",
+        "seeds",
+        "pesticides",
+        "wheat seeds",
+        "rice seeds"
+      ],
+      "is_active": true,
+      "created_at": "2025-10-06T05:53:26.316004+00:00"
+    },
+    {
+      "name": "Test Products",
+      "description": "Test product list for demonstration",
+      "products": [
+        "laptop",
+        "smartphone",
+        "tablet"
+      ],
+      "is_active": true,
+      "created_at": "2025-10-06T05:36:23.346730+00:00"
+    }
+  ],
+  "scraping_jobs": [
+    {
+      "name": "treyl;",
+      "website_id": 5,
+      "product_list_id": 2,
+      "marketplace": "other",
+      "status": "completed",
+      "products_scraped": 50,
+      "products_found": 50,
+      "errors_count": 0,
+      "error_message": "",
+      "auto_start": true,
+      "scheduled_at": null,
+      "created_at": "2025-10-06T07:05:11.715162+00:00",
+      "started_at": "2025-10-06T07:05:15.197794+00:00",
+      "completed_at": "2025-10-06T07:07:19.545215+00:00",
+      "current_progress": "Scraping job completed. Products scraped: 50, Found: 50, Errors: 0"
+    },
+    {
+      "name": "fertilizer test 33",
+      "website_id": 5,
+      "product_list_id": 2,
+      "marketplace": "other",
+      "status": "completed",
+      "products_scraped": 50,
+      "products_found": 50,
+      "errors_count": 0,
+      "error_message": "",
+      "auto_start": true,
+      "scheduled_at": null,
+      "created_at": "2025-10-06T06:56:14.979701+00:00",
+      "started_at": "2025-10-06T06:56:18.447057+00:00",
+      "completed_at": "2025-10-06T06:58:10.863824+00:00",
+      "current_progress": "Scraping job completed. Products scraped: 50, Found: 50, Errors: 0"
+    },
+    {
+      "name": "Restart Test Job",
+      "website_id": 5,
+      "product_list_id": 2,
+      "marketplace": "other",
+      "status": "completed",
+      "products_scraped": 50,
+      "products_found": 50,
+      "errors_count": 0,
+      "error_message": "",
+      "auto_start": false,
+      "scheduled_at": null,
+      "created_at": "2025-10-06T06:53:53.428765+00:00",
+      "started_at": "2025-10-06T06:53:56.202603+00:00",
+      "completed_at": "2025-10-06T06:55:46.691942+00:00",
+      "current_progress": "Scraping job completed. Products scraped: 50, Found: 50, Errors: 0"
+    },
+    {
+      "name": "fertilizer test 2",
+      "website_id": 5,
+      "product_list_id": 2,
+      "marketplace": "other",
+      "status": "completed",
+      "products_scraped": 0,
+      "products_found": 0,
+      "errors_count": 0,
+      "error_message": "",
+      "auto_start": true,
+      "scheduled_at": null,
+      "created_at": "2025-10-06T06:47:36.201663+00:00",
+      "started_at": "2025-10-06T06:47:38.769235+00:00",
+      "completed_at": "2025-10-06T06:47:39.454516+00:00",
+      "current_progress": "Debug test log"
+    },
+    {
+      "name": "Fixed Price Test Job",
+      "website_id": 5,
+      "product_list_id": 2,
+      "marketplace": "other",
+      "status": "completed",
+      "products_scraped": 0,
+      "products_found": 0,
+      "errors_count": 0,
+      "error_message": "",
+      "auto_start": false,
+      "scheduled_at": null,
+      "created_at": "2025-10-06T06:46:14.577612+00:00",
+      "started_at": "2025-10-06T06:46:16.770278+00:00",
+      "completed_at": "2025-10-06T06:46:17.456662+00:00",
+      "current_progress": "Test from shell"
+    },
+    {
+      "name": "Fertilizer Test",
+      "website_id": 5,
+      "product_list_id": 2,
+      "marketplace": "other",
+      "status": "completed",
+      "products_scraped": 0,
+      "products_found": 0,
+      "errors_count": 0,
+      "error_message": "",
+      "auto_start": true,
+      "scheduled_at": null,
+      "created_at": "2025-10-06T06:40:56.620253+00:00",
+      "started_at": "2025-10-06T06:40:59.031093+00:00",
+      "completed_at": "2025-10-06T06:40:59.763565+00:00",
+      "current_progress": "Test log message"
+    }
+  ],
+  "scraped_products": [
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:07:17.687410+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:07:15.797381+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:07:13.885213+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:07:11.968076+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:07:10.217836+00:00"
+    },
+    {
+      "product_name": "Ambition Crop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 3295.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Ambition-Crop-Supplement-1Liter-(-Amino-Acid,-Fulvic-Acid,-And-Micro-Element-)-Bayer-Crop-Science-Plant-Activator&c=1813",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04371520240922939.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:07:08.164670+00:00"
+    },
+    {
+      "product_name": "Cazola 2kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 1985.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Cazola-2kg-Mustard-Seed-Sarsoon-Beej-(-Seed-Toria-)-Rai-Four-Brothers-Bio-Traders-Tarzan-Markaz&c=462",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/32201420230909172.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:07:06.109350+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:07:04.060349+00:00"
+    },
+    {
+      "product_name": "Speedfol P...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 2145.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-P-Speed-Fol-High-P-Sp-Npk-12-40-14-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-P-Foliar-Certified-Solutions-High-Phosphorus-Trace-Elements&c=646",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/53471820220325346.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:07:02.110684+00:00"
+    },
+    {
+      "product_name": "Speedfol N...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 2125.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-N-Speed-Fol-High-N-Sp-Npk-28-8-14-+-Te-1KG-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-N-Foliar-Certified-Solutions-High-Nitrogen-Trace-Elements-Nano-Urea&c=725",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/26352020220622215.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:07:00.069228+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:53.617745+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:51.647318+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:49.726028+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:47.780819+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:46.068295+00:00"
+    },
+    {
+      "product_name": "Ambition Crop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 3295.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Ambition-Crop-Supplement-1Liter-(-Amino-Acid,-Fulvic-Acid,-And-Micro-Element-)-Bayer-Crop-Science-Plant-Activator&c=1813",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04371520240922939.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:44.196760+00:00"
+    },
+    {
+      "product_name": "Cazola 2kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 1985.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Cazola-2kg-Mustard-Seed-Sarsoon-Beej-(-Seed-Toria-)-Rai-Four-Brothers-Bio-Traders-Tarzan-Markaz&c=462",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/32201420230909172.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:42.443727+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:40.322356+00:00"
+    },
+    {
+      "product_name": "Speedfol P...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 2145.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-P-Speed-Fol-High-P-Sp-Npk-12-40-14-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-P-Foliar-Certified-Solutions-High-Phosphorus-Trace-Elements&c=646",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/53471820220325346.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:38.356445+00:00"
+    },
+    {
+      "product_name": "Speedfol N...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 2125.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-N-Speed-Fol-High-N-Sp-Npk-28-8-14-+-Te-1KG-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-N-Foliar-Certified-Solutions-High-Nitrogen-Trace-Elements-Nano-Urea&c=725",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/26352020220622215.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:36.519864+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:29.764295+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:27.621627+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:25.610646+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:23.559430+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:21.528706+00:00"
+    },
+    {
+      "product_name": "Ambition Crop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 3295.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Ambition-Crop-Supplement-1Liter-(-Amino-Acid,-Fulvic-Acid,-And-Micro-Element-)-Bayer-Crop-Science-Plant-Activator&c=1813",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04371520240922939.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:19.621252+00:00"
+    },
+    {
+      "product_name": "Cazola 2kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 1985.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Cazola-2kg-Mustard-Seed-Sarsoon-Beej-(-Seed-Toria-)-Rai-Four-Brothers-Bio-Traders-Tarzan-Markaz&c=462",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/32201420230909172.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:17.575482+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:15.528653+00:00"
+    },
+    {
+      "product_name": "Speedfol P...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 2145.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-P-Speed-Fol-High-P-Sp-Npk-12-40-14-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-P-Foliar-Certified-Solutions-High-Phosphorus-Trace-Elements&c=646",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/53471820220325346.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:13.681492+00:00"
+    },
+    {
+      "product_name": "Speedfol N...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 2125.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-N-Speed-Fol-High-N-Sp-Npk-28-8-14-+-Te-1KG-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-N-Foliar-Certified-Solutions-High-Nitrogen-Trace-Elements-Nano-Urea&c=725",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/26352020220622215.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:11.632755+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:05.467450+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:03.440415+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:06:01.404956+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:59.352533+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:57.280825+00:00"
+    },
+    {
+      "product_name": "Ambition Crop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 3295.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Ambition-Crop-Supplement-1Liter-(-Amino-Acid,-Fulvic-Acid,-And-Micro-Element-)-Bayer-Crop-Science-Plant-Activator&c=1813",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04371520240922939.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:55.480429+00:00"
+    },
+    {
+      "product_name": "Cazola 2kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 1985.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Cazola-2kg-Mustard-Seed-Sarsoon-Beej-(-Seed-Toria-)-Rai-Four-Brothers-Bio-Traders-Tarzan-Markaz&c=462",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/32201420230909172.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:53.244721+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:51.324297+00:00"
+    },
+    {
+      "product_name": "Speedfol P...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 2145.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-P-Speed-Fol-High-P-Sp-Npk-12-40-14-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-P-Foliar-Certified-Solutions-High-Phosphorus-Trace-Elements&c=646",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/53471820220325346.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:49.437013+00:00"
+    },
+    {
+      "product_name": "Speedfol N...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 2125.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-N-Speed-Fol-High-N-Sp-Npk-28-8-14-+-Te-1KG-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-N-Foliar-Certified-Solutions-High-Nitrogen-Trace-Elements-Nano-Urea&c=725",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/26352020220622215.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:47.687392+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:41.632720+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:39.906104+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:38.141417+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:36.425824+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:34.767843+00:00"
+    },
+    {
+      "product_name": "Ambition Crop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 3295.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Ambition-Crop-Supplement-1Liter-(-Amino-Acid,-Fulvic-Acid,-And-Micro-Element-)-Bayer-Crop-Science-Plant-Activator&c=1813",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04371520240922939.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:33.128228+00:00"
+    },
+    {
+      "product_name": "Cazola 2kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 1985.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Cazola-2kg-Mustard-Seed-Sarsoon-Beej-(-Seed-Toria-)-Rai-Four-Brothers-Bio-Traders-Tarzan-Markaz&c=462",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/32201420230909172.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:31.532356+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:29.852590+00:00"
+    },
+    {
+      "product_name": "Speedfol P...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 2145.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-P-Speed-Fol-High-P-Sp-Npk-12-40-14-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-P-Foliar-Certified-Solutions-High-Phosphorus-Trace-Elements&c=646",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/53471820220325346.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:28.007586+00:00"
+    },
+    {
+      "product_name": "Speedfol N...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 2125.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-N-Speed-Fol-High-N-Sp-Npk-28-8-14-+-Te-1KG-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-N-Foliar-Certified-Solutions-High-Nitrogen-Trace-Elements-Nano-Urea&c=725",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/26352020220622215.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 18,
+      "scraped_at": "2025-10-06T07:05:26.166703+00:00"
+    },
+    {
+      "product_name": "Bordox Super...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 1495.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Bordox-Super-500ML-Crop-Supplement-Boron-15-Swat-Agro-Chemicals-بوران&c=1616",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/49281920240331852.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:58:09.262810+00:00"
+    },
+    {
+      "product_name": "Canola 021C 2KG...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 6760.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Canola-021C-2KG-Pack-Hybrid-Canola-Seed-F1-Hc-021-Certus-Seed-Kanzo-Combagro-Evyol-Group-سرٹس-سیڈز-کا-ہائبرڈ-کینولا-Canola021&c=475",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/50451720230908711.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:58:07.615405+00:00"
+    },
+    {
+      "product_name": "Barseem Seed...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 5250.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Barseem-Seed-4kg-Super-late-Faisalabad-Kissan-Ghar-Brand-Desi-Berseem-Multicut-Barsim-Sabz-Chara-Clover&c=1824",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04341820240928780.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:58:05.984506+00:00"
+    },
+    {
+      "product_name": "Speedfol Cereal...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 2155.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-Cereal-Speed-Fol-High-K-Cereal-Sp-Npk-13-3-41-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-Cereal-Foliar-Certified-Solutions-High-Potash-Witth-Zn-6-B-2-best-for-corn,-millet,-whe&c=1072",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/09421920240224155.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:58:04.366121+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:58:02.749588+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:58:01.155490+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:59.473495+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:57.858413+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:56.233804+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:54.614461+00:00"
+    },
+    {
+      "product_name": "Bordox Super...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 1495.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Bordox-Super-500ML-Crop-Supplement-Boron-15-Swat-Agro-Chemicals-بوران&c=1616",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/49281920240331852.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:48.844902+00:00"
+    },
+    {
+      "product_name": "Canola 021C 2KG...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 6760.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Canola-021C-2KG-Pack-Hybrid-Canola-Seed-F1-Hc-021-Certus-Seed-Kanzo-Combagro-Evyol-Group-سرٹس-سیڈز-کا-ہائبرڈ-کینولا-Canola021&c=475",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/50451720230908711.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:47.232015+00:00"
+    },
+    {
+      "product_name": "Barseem Seed...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 5250.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Barseem-Seed-4kg-Super-late-Faisalabad-Kissan-Ghar-Brand-Desi-Berseem-Multicut-Barsim-Sabz-Chara-Clover&c=1824",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04341820240928780.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:45.509609+00:00"
+    },
+    {
+      "product_name": "Speedfol Cereal...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 2155.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-Cereal-Speed-Fol-High-K-Cereal-Sp-Npk-13-3-41-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-Cereal-Foliar-Certified-Solutions-High-Potash-Witth-Zn-6-B-2-best-for-corn,-millet,-whe&c=1072",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/09421920240224155.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:43.873695+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:42.228642+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:40.546757+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:38.900283+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:37.204950+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:35.561116+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:33.791768+00:00"
+    },
+    {
+      "product_name": "Bordox Super...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 1495.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Bordox-Super-500ML-Crop-Supplement-Boron-15-Swat-Agro-Chemicals-بوران&c=1616",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/49281920240331852.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:27.282853+00:00"
+    },
+    {
+      "product_name": "Canola 021C 2KG...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 6760.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Canola-021C-2KG-Pack-Hybrid-Canola-Seed-F1-Hc-021-Certus-Seed-Kanzo-Combagro-Evyol-Group-سرٹس-سیڈز-کا-ہائبرڈ-کینولا-Canola021&c=475",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/50451720230908711.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:25.382946+00:00"
+    },
+    {
+      "product_name": "Barseem Seed...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 5250.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Barseem-Seed-4kg-Super-late-Faisalabad-Kissan-Ghar-Brand-Desi-Berseem-Multicut-Barsim-Sabz-Chara-Clover&c=1824",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04341820240928780.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:22.974018+00:00"
+    },
+    {
+      "product_name": "Speedfol Cereal...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 2155.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-Cereal-Speed-Fol-High-K-Cereal-Sp-Npk-13-3-41-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-Cereal-Foliar-Certified-Solutions-High-Potash-Witth-Zn-6-B-2-best-for-corn,-millet,-whe&c=1072",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/09421920240224155.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:21.249001+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:19.477634+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:17.821028+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:16.111121+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:14.428138+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:12.785060+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:11.104293+00:00"
+    },
+    {
+      "product_name": "Bordox Super...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 1495.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Bordox-Super-500ML-Crop-Supplement-Boron-15-Swat-Agro-Chemicals-بوران&c=1616",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/49281920240331852.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:05.314468+00:00"
+    },
+    {
+      "product_name": "Canola 021C 2KG...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 6760.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Canola-021C-2KG-Pack-Hybrid-Canola-Seed-F1-Hc-021-Certus-Seed-Kanzo-Combagro-Evyol-Group-سرٹس-سیڈز-کا-ہائبرڈ-کینولا-Canola021&c=475",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/50451720230908711.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:03.719266+00:00"
+    },
+    {
+      "product_name": "Barseem Seed...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 5250.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Barseem-Seed-4kg-Super-late-Faisalabad-Kissan-Ghar-Brand-Desi-Berseem-Multicut-Barsim-Sabz-Chara-Clover&c=1824",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04341820240928780.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:02.100238+00:00"
+    },
+    {
+      "product_name": "Speedfol Cereal...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 2155.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-Cereal-Speed-Fol-High-K-Cereal-Sp-Npk-13-3-41-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-Cereal-Foliar-Certified-Solutions-High-Potash-Witth-Zn-6-B-2-best-for-corn,-millet,-whe&c=1072",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/09421920240224155.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:57:00.504417+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:58.828594+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:57.228062+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:55.623665+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:54.027533+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:52.414285+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:50.753805+00:00"
+    },
+    {
+      "product_name": "Bordox Super...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 1495.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Bordox-Super-500ML-Crop-Supplement-Boron-15-Swat-Agro-Chemicals-بوران&c=1616",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/49281920240331852.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:44.666520+00:00"
+    },
+    {
+      "product_name": "Canola 021C 2KG...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 6760.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Canola-021C-2KG-Pack-Hybrid-Canola-Seed-F1-Hc-021-Certus-Seed-Kanzo-Combagro-Evyol-Group-سرٹس-سیڈز-کا-ہائبرڈ-کینولا-Canola021&c=475",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/50451720230908711.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:43.016032+00:00"
+    },
+    {
+      "product_name": "Barseem Seed...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 5250.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Barseem-Seed-4kg-Super-late-Faisalabad-Kissan-Ghar-Brand-Desi-Berseem-Multicut-Barsim-Sabz-Chara-Clover&c=1824",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04341820240928780.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:41.328917+00:00"
+    },
+    {
+      "product_name": "Speedfol Cereal...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 2155.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-Cereal-Speed-Fol-High-K-Cereal-Sp-Npk-13-3-41-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-Cereal-Foliar-Certified-Solutions-High-Potash-Witth-Zn-6-B-2-best-for-corn,-millet,-whe&c=1072",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/09421920240224155.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:39.677166+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:38.079133+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:36.390677+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:34.641836+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:31.762213+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:30.136539+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 17,
+      "scraped_at": "2025-10-06T06:56:28.410632+00:00"
+    },
+    {
+      "product_name": "Bordox Super...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 1495.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Bordox-Super-500ML-Crop-Supplement-Boron-15-Swat-Agro-Chemicals-بوران&c=1616",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/49281920240331852.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:45.051223+00:00"
+    },
+    {
+      "product_name": "Canola 021C 2KG...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 6760.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Canola-021C-2KG-Pack-Hybrid-Canola-Seed-F1-Hc-021-Certus-Seed-Kanzo-Combagro-Evyol-Group-سرٹس-سیڈز-کا-ہائبرڈ-کینولا-Canola021&c=475",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/50451720230908711.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:43.087034+00:00"
+    },
+    {
+      "product_name": "Barseem Seed...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 5250.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Barseem-Seed-4kg-Super-late-Faisalabad-Kissan-Ghar-Brand-Desi-Berseem-Multicut-Barsim-Sabz-Chara-Clover&c=1824",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04341820240928780.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:41.395826+00:00"
+    },
+    {
+      "product_name": "Speedfol Cereal...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 2155.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-Cereal-Speed-Fol-High-K-Cereal-Sp-Npk-13-3-41-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-Cereal-Foliar-Certified-Solutions-High-Potash-Witth-Zn-6-B-2-best-for-corn,-millet,-whe&c=1072",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/09421920240224155.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:39.740625+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:38.096438+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:36.398545+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:34.648001+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:32.853554+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:31.201315+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "rice seeds",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:29.569217+00:00"
+    },
+    {
+      "product_name": "Bordox Super...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 1495.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Bordox-Super-500ML-Crop-Supplement-Boron-15-Swat-Agro-Chemicals-بوران&c=1616",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/49281920240331852.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:23.449028+00:00"
+    },
+    {
+      "product_name": "Canola 021C 2KG...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 6760.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Canola-021C-2KG-Pack-Hybrid-Canola-Seed-F1-Hc-021-Certus-Seed-Kanzo-Combagro-Evyol-Group-سرٹس-سیڈز-کا-ہائبرڈ-کینولا-Canola021&c=475",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/50451720230908711.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:21.750043+00:00"
+    },
+    {
+      "product_name": "Barseem Seed...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 5250.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Barseem-Seed-4kg-Super-late-Faisalabad-Kissan-Ghar-Brand-Desi-Berseem-Multicut-Barsim-Sabz-Chara-Clover&c=1824",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04341820240928780.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:20.085979+00:00"
+    },
+    {
+      "product_name": "Speedfol Cereal...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 2155.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-Cereal-Speed-Fol-High-K-Cereal-Sp-Npk-13-3-41-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-Cereal-Foliar-Certified-Solutions-High-Potash-Witth-Zn-6-B-2-best-for-corn,-millet,-whe&c=1072",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/09421920240224155.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:18.429260+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:16.812532+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:15.179873+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:13.559774+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:11.935875+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:10.289389+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "wheat seeds",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:08.647077+00:00"
+    },
+    {
+      "product_name": "Bordox Super...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 1495.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Bordox-Super-500ML-Crop-Supplement-Boron-15-Swat-Agro-Chemicals-بوران&c=1616",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/49281920240331852.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:02.721915+00:00"
+    },
+    {
+      "product_name": "Canola 021C 2KG...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 6760.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Canola-021C-2KG-Pack-Hybrid-Canola-Seed-F1-Hc-021-Certus-Seed-Kanzo-Combagro-Evyol-Group-سرٹس-سیڈز-کا-ہائبرڈ-کینولا-Canola021&c=475",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/50451720230908711.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:55:01.090125+00:00"
+    },
+    {
+      "product_name": "Barseem Seed...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 5250.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Barseem-Seed-4kg-Super-late-Faisalabad-Kissan-Ghar-Brand-Desi-Berseem-Multicut-Barsim-Sabz-Chara-Clover&c=1824",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04341820240928780.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:59.444460+00:00"
+    },
+    {
+      "product_name": "Speedfol Cereal...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 2155.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-Cereal-Speed-Fol-High-K-Cereal-Sp-Npk-13-3-41-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-Cereal-Foliar-Certified-Solutions-High-Potash-Witth-Zn-6-B-2-best-for-corn,-millet,-whe&c=1072",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/09421920240224155.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:57.784651+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:56.093896+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:54.432308+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:52.801023+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:51.172200+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:49.540863+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "pesticides",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:47.792316+00:00"
+    },
+    {
+      "product_name": "Bordox Super...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 1495.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Bordox-Super-500ML-Crop-Supplement-Boron-15-Swat-Agro-Chemicals-بوران&c=1616",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/49281920240331852.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:41.897306+00:00"
+    },
+    {
+      "product_name": "Canola 021C 2KG...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 6760.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Canola-021C-2KG-Pack-Hybrid-Canola-Seed-F1-Hc-021-Certus-Seed-Kanzo-Combagro-Evyol-Group-سرٹس-سیڈز-کا-ہائبرڈ-کینولا-Canola021&c=475",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/50451720230908711.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:40.273367+00:00"
+    },
+    {
+      "product_name": "Barseem Seed...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 5250.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Barseem-Seed-4kg-Super-late-Faisalabad-Kissan-Ghar-Brand-Desi-Berseem-Multicut-Barsim-Sabz-Chara-Clover&c=1824",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04341820240928780.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:38.576805+00:00"
+    },
+    {
+      "product_name": "Speedfol Cereal...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 2155.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-Cereal-Speed-Fol-High-K-Cereal-Sp-Npk-13-3-41-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-Cereal-Foliar-Certified-Solutions-High-Potash-Witth-Zn-6-B-2-best-for-corn,-millet,-whe&c=1072",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/09421920240224155.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:36.911901+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:35.243652+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:33.613627+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:31.953901+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:30.328172+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:28.701900+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "seeds",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:27.077340+00:00"
+    },
+    {
+      "product_name": "Bordox Super...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 1495.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Bordox-Super-500ML-Crop-Supplement-Boron-15-Swat-Agro-Chemicals-بوران&c=1616",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/49281920240331852.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:21.292228+00:00"
+    },
+    {
+      "product_name": "Canola 021C 2KG...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 6760.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Canola-021C-2KG-Pack-Hybrid-Canola-Seed-F1-Hc-021-Certus-Seed-Kanzo-Combagro-Evyol-Group-سرٹس-سیڈز-کا-ہائبرڈ-کینولا-Canola021&c=475",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/50451720230908711.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:19.529769+00:00"
+    },
+    {
+      "product_name": "Barseem Seed...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 5250.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Barseem-Seed-4kg-Super-late-Faisalabad-Kissan-Ghar-Brand-Desi-Berseem-Multicut-Barsim-Sabz-Chara-Clover&c=1824",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04341820240928780.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:17.861343+00:00"
+    },
+    {
+      "product_name": "Speedfol Cereal...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 2155.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Speedfol-Cereal-Speed-Fol-High-K-Cereal-Sp-Npk-13-3-41-+-Te-1kg-Soluble-Fertilizer-Sqm-Swat-Agro-Chemicals-Foliar-Specialty-Plant-Nutrition-Soluble-Powder-Sp-Speedfol-Cereal-Foliar-Certified-Solutions-High-Potash-Witth-Zn-6-B-2-best-for-corn,-millet,-whe&c=1072",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/09421920240224155.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:16.230516+00:00"
+    },
+    {
+      "product_name": "Pimeko (...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 715.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Pimeko-(-Magicate-)-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Swat-agro&c=1734",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/14472120240725666.png",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:14.341330+00:00"
+    },
+    {
+      "product_name": "Nativo 75...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 1175.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Nativo-75-Percent-Wg-65gm-Tebuconazole-+-Trifloxystrobin-Fungicide-Bayer-Crop&c=160",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59231920201008238.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:12.709698+00:00"
+    },
+    {
+      "product_name": "Fipronil Arika...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 1280.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Fipronil-Arika-0.4-w/w-6KG-Alnoor-Agro-Termite-Control-Insecticide-for-soil-bord-Insects&c=2116",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/59031620250719893.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:10.993639+00:00"
+    },
+    {
+      "product_name": "Sona Urea 50kg...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 4545.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Sona-Urea-50kg-Nitrogen-46-Fauji-Fertilizer-Company-With-Addition-Of-Neem-Coated-Khaad&c=706",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/36261220220523263.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:09.344107+00:00"
+    },
+    {
+      "product_name": "Full Green Bop...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 3725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Full-Green-Bop-50kg-Solex-Chemicals-Bio-Phos-Phosphate-Solubiulizing-Bacteria-(psb)-Hdom-بی-او-پی&c=1356",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/04091720230928497.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:07.711601+00:00"
+    },
+    {
+      "product_name": "Magicate...",
+      "marketplace": "other",
+      "website_id": 5,
+      "search_query": "fertilizer",
+      "listed_price": 725.0,
+      "original_price": null,
+      "url": "https://www.kissanghar.pk/product-details?name=Magicate-Insecticide-80WG-60GM-Pymetrozine-+-Nintenpyram-for-plant-hoppers,-aphids,-sucking-insects-pests-Altiga-Agri-solutions-(-Pimeko-)&c=2195",
+      "image_url": "https://www.kissanghar.pk/assets/img/product/10561220250928637.jpg",
+      "description": "",
+      "availability": true,
+      "stock_status": "",
+      "seller_name": "",
+      "rating": null,
+      "review_count": null,
+      "scraping_job_id": 16,
+      "scraped_at": "2025-10-06T06:54:06.033556+00:00"
+    }
+  ],
+  "scraping_job_logs": [
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Scraping job completed. Products scraped: 50, Found: 50, Errors: 0",
+      "timestamp": "2025-10-06T07:07:19.833891+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Updating job status to 'completed'",
+      "timestamp": "2025-10-06T07:07:18.982557+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T07:07:17.923400+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 10 for 'rice seeds': Pimeko (...",
+      "timestamp": "2025-10-06T07:07:17.086471+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T07:07:16.073084+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 9 for 'rice seeds': Nativo 75...",
+      "timestamp": "2025-10-06T07:07:15.340692+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T07:07:14.122478+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 8 for 'rice seeds': Fipronil Arika...",
+      "timestamp": "2025-10-06T07:07:13.184738+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T07:07:12.199830+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 7 for 'rice seeds': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T07:07:11.502438+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T07:07:10.515205+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 6 for 'rice seeds': Full Green Bop...",
+      "timestamp": "2025-10-06T07:07:09.691078+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Ambition Crop... - $3295",
+      "timestamp": "2025-10-06T07:07:08.474433+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 5 for 'rice seeds': Ambition Crop...",
+      "timestamp": "2025-10-06T07:07:07.679545+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Cazola 2kg... - $1985",
+      "timestamp": "2025-10-06T07:07:06.412383+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 4 for 'rice seeds': Cazola 2kg...",
+      "timestamp": "2025-10-06T07:07:05.496406+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T07:07:04.382290+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 3 for 'rice seeds': Magicate...",
+      "timestamp": "2025-10-06T07:07:03.574284+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Speedfol P... - $2145",
+      "timestamp": "2025-10-06T07:07:02.437967+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 2 for 'rice seeds': Speedfol P...",
+      "timestamp": "2025-10-06T07:07:01.471243+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Speedfol N... - $2125",
+      "timestamp": "2025-10-06T07:07:00.379055+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 1 for 'rice seeds': Speedfol N...",
+      "timestamp": "2025-10-06T07:06:59.557045+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Found 10 results for 'rice seeds'",
+      "timestamp": "2025-10-06T07:06:58.962887+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "[5/5] Searching for: rice seeds",
+      "timestamp": "2025-10-06T07:06:55.068583+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T07:06:53.925260+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 10 for 'wheat seeds': Pimeko (...",
+      "timestamp": "2025-10-06T07:06:53.016481+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T07:06:51.885243+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 9 for 'wheat seeds': Nativo 75...",
+      "timestamp": "2025-10-06T07:06:51.156757+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T07:06:50.032826+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 8 for 'wheat seeds': Fipronil Arika...",
+      "timestamp": "2025-10-06T07:06:49.118486+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T07:06:48.035364+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 7 for 'wheat seeds': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T07:06:47.209512+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T07:06:46.301087+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 6 for 'wheat seeds': Full Green Bop...",
+      "timestamp": "2025-10-06T07:06:45.529910+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Ambition Crop... - $3295",
+      "timestamp": "2025-10-06T07:06:44.432561+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 5 for 'wheat seeds': Ambition Crop...",
+      "timestamp": "2025-10-06T07:06:43.685494+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Cazola 2kg... - $1985",
+      "timestamp": "2025-10-06T07:06:42.672968+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 4 for 'wheat seeds': Cazola 2kg...",
+      "timestamp": "2025-10-06T07:06:41.797832+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T07:06:40.556820+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 3 for 'wheat seeds': Magicate...",
+      "timestamp": "2025-10-06T07:06:39.794756+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Speedfol P... - $2145",
+      "timestamp": "2025-10-06T07:06:38.590103+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 2 for 'wheat seeds': Speedfol P...",
+      "timestamp": "2025-10-06T07:06:37.848533+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Speedfol N... - $2125",
+      "timestamp": "2025-10-06T07:06:36.758682+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 1 for 'wheat seeds': Speedfol N...",
+      "timestamp": "2025-10-06T07:06:35.913001+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Found 10 results for 'wheat seeds'",
+      "timestamp": "2025-10-06T07:06:35.180735+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "[4/5] Searching for: wheat seeds",
+      "timestamp": "2025-10-06T07:06:31.218146+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T07:06:30.066392+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 10 for 'pesticides': Pimeko (...",
+      "timestamp": "2025-10-06T07:06:29.153916+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T07:06:27.936113+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 9 for 'pesticides': Nativo 75...",
+      "timestamp": "2025-10-06T07:06:27.116704+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T07:06:25.869627+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 8 for 'pesticides': Fipronil Arika...",
+      "timestamp": "2025-10-06T07:06:24.963846+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T07:06:23.860195+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 7 for 'pesticides': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T07:06:23.001035+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T07:06:21.792340+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 6 for 'pesticides': Full Green Bop...",
+      "timestamp": "2025-10-06T07:06:21.075863+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Ambition Crop... - $3295",
+      "timestamp": "2025-10-06T07:06:19.924468+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 5 for 'pesticides': Ambition Crop...",
+      "timestamp": "2025-10-06T07:06:18.993830+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Cazola 2kg... - $1985",
+      "timestamp": "2025-10-06T07:06:17.894550+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 4 for 'pesticides': Cazola 2kg...",
+      "timestamp": "2025-10-06T07:06:17.062150+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T07:06:15.831446+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 3 for 'pesticides': Magicate...",
+      "timestamp": "2025-10-06T07:06:14.892100+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Speedfol P... - $2145",
+      "timestamp": "2025-10-06T07:06:13.927745+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 2 for 'pesticides': Speedfol P...",
+      "timestamp": "2025-10-06T07:06:13.090919+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Speedfol N... - $2125",
+      "timestamp": "2025-10-06T07:06:11.943815+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 1 for 'pesticides': Speedfol N...",
+      "timestamp": "2025-10-06T07:06:11.115163+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Found 10 results for 'pesticides'",
+      "timestamp": "2025-10-06T07:06:10.602700+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "[3/5] Searching for: pesticides",
+      "timestamp": "2025-10-06T07:06:06.716718+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T07:06:05.717470+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 10 for 'seeds': Pimeko (...",
+      "timestamp": "2025-10-06T07:06:04.885455+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T07:06:03.750074+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 9 for 'seeds': Nativo 75...",
+      "timestamp": "2025-10-06T07:06:02.820580+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T07:06:01.727562+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 8 for 'seeds': Fipronil Arika...",
+      "timestamp": "2025-10-06T07:06:00.754157+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T07:05:59.652963+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 7 for 'seeds': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T07:05:58.726256+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T07:05:57.515822+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 6 for 'seeds': Full Green Bop...",
+      "timestamp": "2025-10-06T07:05:56.780195+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Ambition Crop... - $3295",
+      "timestamp": "2025-10-06T07:05:55.765501+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 5 for 'seeds': Ambition Crop...",
+      "timestamp": "2025-10-06T07:05:54.735138+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Cazola 2kg... - $1985",
+      "timestamp": "2025-10-06T07:05:53.503186+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 4 for 'seeds': Cazola 2kg...",
+      "timestamp": "2025-10-06T07:05:52.788450+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T07:05:51.563494+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 3 for 'seeds': Magicate...",
+      "timestamp": "2025-10-06T07:05:50.795273+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Speedfol P... - $2145",
+      "timestamp": "2025-10-06T07:05:49.716685+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 2 for 'seeds': Speedfol P...",
+      "timestamp": "2025-10-06T07:05:48.962559+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Speedfol N... - $2125",
+      "timestamp": "2025-10-06T07:05:47.964135+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 1 for 'seeds': Speedfol N...",
+      "timestamp": "2025-10-06T07:05:47.183526+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Found 10 results for 'seeds'",
+      "timestamp": "2025-10-06T07:05:46.616081+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "[2/5] Searching for: seeds",
+      "timestamp": "2025-10-06T07:05:42.824684+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T07:05:41.868550+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 10 for 'fertilizer': Pimeko (...",
+      "timestamp": "2025-10-06T07:05:41.181001+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T07:05:40.197235+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 9 for 'fertilizer': Nativo 75...",
+      "timestamp": "2025-10-06T07:05:39.434994+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T07:05:38.374570+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 8 for 'fertilizer': Fipronil Arika...",
+      "timestamp": "2025-10-06T07:05:37.657130+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T07:05:36.660823+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 7 for 'fertilizer': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T07:05:35.962119+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T07:05:35.000755+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 6 for 'fertilizer': Full Green Bop...",
+      "timestamp": "2025-10-06T07:05:34.265910+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Ambition Crop... - $3295",
+      "timestamp": "2025-10-06T07:05:33.350798+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 5 for 'fertilizer': Ambition Crop...",
+      "timestamp": "2025-10-06T07:05:32.675368+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Cazola 2kg... - $1985",
+      "timestamp": "2025-10-06T07:05:31.765988+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 4 for 'fertilizer': Cazola 2kg...",
+      "timestamp": "2025-10-06T07:05:31.082838+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T07:05:30.161371+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 3 for 'fertilizer': Magicate...",
+      "timestamp": "2025-10-06T07:05:29.340667+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Speedfol P... - $2145",
+      "timestamp": "2025-10-06T07:05:28.284556+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 2 for 'fertilizer': Speedfol P...",
+      "timestamp": "2025-10-06T07:05:27.508223+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "success",
+      "message": "Saved product: Speedfol N... - $2125",
+      "timestamp": "2025-10-06T07:05:26.407897+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Processing result 1 for 'fertilizer': Speedfol N...",
+      "timestamp": "2025-10-06T07:05:25.576036+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Found 10 results for 'fertilizer'",
+      "timestamp": "2025-10-06T07:05:25.014152+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "[1/5] Searching for: fertilizer",
+      "timestamp": "2025-10-06T07:05:20.122457+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Starting scraping for 5 products",
+      "timestamp": "2025-10-06T07:05:19.511599+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Scraping engine initialized: GenericScrapingEngine",
+      "timestamp": "2025-10-06T07:05:18.872121+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Initializing scraping engine for marketplace: other",
+      "timestamp": "2025-10-06T07:05:18.385856+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Products to search: fertilizer, seeds, pesticides...",
+      "timestamp": "2025-10-06T07:05:17.839444+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Using product list 'fertilizer test' with 5 products",
+      "timestamp": "2025-10-06T07:05:17.050348+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Website: Kissan Ghar (active: True)",
+      "timestamp": "2025-10-06T07:05:16.258252+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Job status updated to 'running'",
+      "timestamp": "2025-10-06T07:05:15.438379+00:00"
+    },
+    {
+      "job_id": 18,
+      "level": "info",
+      "message": "Task started - Found job: treyl;",
+      "timestamp": "2025-10-06T07:05:14.654584+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Scraping job completed. Products scraped: 50, Found: 50, Errors: 0",
+      "timestamp": "2025-10-06T06:58:11.084947+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Updating job status to 'completed'",
+      "timestamp": "2025-10-06T06:58:10.401928+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Bordox Super... - $1495",
+      "timestamp": "2025-10-06T06:58:09.483776+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 10 for 'rice seeds': Bordox Super...",
+      "timestamp": "2025-10-06T06:58:08.746496+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Canola 021C 2KG... - $6760",
+      "timestamp": "2025-10-06T06:58:07.844414+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 9 for 'rice seeds': Canola 021C 2KG...",
+      "timestamp": "2025-10-06T06:58:07.140140+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Barseem Seed... - $5250",
+      "timestamp": "2025-10-06T06:58:06.210989+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 8 for 'rice seeds': Barseem Seed...",
+      "timestamp": "2025-10-06T06:58:05.533587+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Speedfol Cereal... - $2155",
+      "timestamp": "2025-10-06T06:58:04.626055+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 7 for 'rice seeds': Speedfol Cereal...",
+      "timestamp": "2025-10-06T06:58:03.905550+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T06:58:02.985617+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 6 for 'rice seeds': Pimeko (...",
+      "timestamp": "2025-10-06T06:58:02.296092+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T06:58:01.389921+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 5 for 'rice seeds': Nativo 75...",
+      "timestamp": "2025-10-06T06:58:00.609160+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T06:57:59.687278+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 4 for 'rice seeds': Fipronil Arika...",
+      "timestamp": "2025-10-06T06:57:59.017711+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T06:57:58.087015+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 3 for 'rice seeds': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T06:57:57.391227+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T06:57:56.468556+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 2 for 'rice seeds': Full Green Bop...",
+      "timestamp": "2025-10-06T06:57:55.779145+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T06:57:54.849348+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 1 for 'rice seeds': Magicate...",
+      "timestamp": "2025-10-06T06:57:54.140725+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Found 10 results for 'rice seeds'",
+      "timestamp": "2025-10-06T06:57:53.614338+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "[5/5] Searching for: rice seeds",
+      "timestamp": "2025-10-06T06:57:49.983761+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Bordox Super... - $1495",
+      "timestamp": "2025-10-06T06:57:49.077825+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 10 for 'wheat seeds': Bordox Super...",
+      "timestamp": "2025-10-06T06:57:48.374779+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Canola 021C 2KG... - $6760",
+      "timestamp": "2025-10-06T06:57:47.461401+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 9 for 'wheat seeds': Canola 021C 2KG...",
+      "timestamp": "2025-10-06T06:57:46.771113+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Barseem Seed... - $5250",
+      "timestamp": "2025-10-06T06:57:45.732940+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 8 for 'wheat seeds': Barseem Seed...",
+      "timestamp": "2025-10-06T06:57:45.043994+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Speedfol Cereal... - $2155",
+      "timestamp": "2025-10-06T06:57:44.108428+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 7 for 'wheat seeds': Speedfol Cereal...",
+      "timestamp": "2025-10-06T06:57:43.387788+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T06:57:42.451965+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 6 for 'wheat seeds': Pimeko (...",
+      "timestamp": "2025-10-06T06:57:41.759670+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T06:57:40.776858+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 5 for 'wheat seeds': Nativo 75...",
+      "timestamp": "2025-10-06T06:57:40.090515+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T06:57:39.155771+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 4 for 'wheat seeds': Fipronil Arika...",
+      "timestamp": "2025-10-06T06:57:38.373335+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T06:57:37.435477+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 3 for 'wheat seeds': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T06:57:36.747828+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T06:57:35.795125+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 2 for 'wheat seeds': Full Green Bop...",
+      "timestamp": "2025-10-06T06:57:35.073941+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T06:57:34.023977+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 1 for 'wheat seeds': Magicate...",
+      "timestamp": "2025-10-06T06:57:33.302679+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Found 10 results for 'wheat seeds'",
+      "timestamp": "2025-10-06T06:57:32.741738+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "[4/5] Searching for: wheat seeds",
+      "timestamp": "2025-10-06T06:57:28.763822+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Bordox Super... - $1495",
+      "timestamp": "2025-10-06T06:57:27.542949+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 10 for 'pesticides': Bordox Super...",
+      "timestamp": "2025-10-06T06:57:26.781963+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Canola 021C 2KG... - $6760",
+      "timestamp": "2025-10-06T06:57:25.649623+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 9 for 'pesticides': Canola 021C 2KG...",
+      "timestamp": "2025-10-06T06:57:24.613524+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Barseem Seed... - $5250",
+      "timestamp": "2025-10-06T06:57:23.221123+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 8 for 'pesticides': Barseem Seed...",
+      "timestamp": "2025-10-06T06:57:22.470947+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Speedfol Cereal... - $2155",
+      "timestamp": "2025-10-06T06:57:21.479059+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 7 for 'pesticides': Speedfol Cereal...",
+      "timestamp": "2025-10-06T06:57:20.697934+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T06:57:19.706677+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 6 for 'pesticides': Pimeko (...",
+      "timestamp": "2025-10-06T06:57:18.967600+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T06:57:18.051920+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 5 for 'pesticides': Nativo 75...",
+      "timestamp": "2025-10-06T06:57:17.316380+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T06:57:16.338289+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 4 for 'pesticides': Fipronil Arika...",
+      "timestamp": "2025-10-06T06:57:15.608798+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T06:57:14.654574+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 3 for 'pesticides': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T06:57:13.934602+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T06:57:13.011174+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 2 for 'pesticides': Full Green Bop...",
+      "timestamp": "2025-10-06T06:57:12.324218+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T06:57:11.387672+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 1 for 'pesticides': Magicate...",
+      "timestamp": "2025-10-06T06:57:10.651605+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Found 10 results for 'pesticides'",
+      "timestamp": "2025-10-06T06:57:10.195833+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "[3/5] Searching for: pesticides",
+      "timestamp": "2025-10-06T06:57:06.458280+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Bordox Super... - $1495",
+      "timestamp": "2025-10-06T06:57:05.555566+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 10 for 'seeds': Bordox Super...",
+      "timestamp": "2025-10-06T06:57:04.860873+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Canola 021C 2KG... - $6760",
+      "timestamp": "2025-10-06T06:57:03.956915+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 9 for 'seeds': Canola 021C 2KG...",
+      "timestamp": "2025-10-06T06:57:03.266838+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Barseem Seed... - $5250",
+      "timestamp": "2025-10-06T06:57:02.338189+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 8 for 'seeds': Barseem Seed...",
+      "timestamp": "2025-10-06T06:57:01.641362+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Speedfol Cereal... - $2155",
+      "timestamp": "2025-10-06T06:57:00.737771+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 7 for 'seeds': Speedfol Cereal...",
+      "timestamp": "2025-10-06T06:57:00.050363+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T06:56:59.062684+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 6 for 'seeds': Pimeko (...",
+      "timestamp": "2025-10-06T06:56:58.378240+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T06:56:57.452583+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 5 for 'seeds': Nativo 75...",
+      "timestamp": "2025-10-06T06:56:56.771441+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T06:56:55.851882+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 4 for 'seeds': Fipronil Arika...",
+      "timestamp": "2025-10-06T06:56:55.169975+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T06:56:54.260448+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 3 for 'seeds': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T06:56:53.574102+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T06:56:52.652561+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 2 for 'seeds': Full Green Bop...",
+      "timestamp": "2025-10-06T06:56:51.925198+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T06:56:50.990610+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 1 for 'seeds': Magicate...",
+      "timestamp": "2025-10-06T06:56:50.306065+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Found 10 results for 'seeds'",
+      "timestamp": "2025-10-06T06:56:49.826841+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "[2/5] Searching for: seeds",
+      "timestamp": "2025-10-06T06:56:45.882431+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Bordox Super... - $1495",
+      "timestamp": "2025-10-06T06:56:44.892048+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 10 for 'fertilizer': Bordox Super...",
+      "timestamp": "2025-10-06T06:56:44.206150+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Canola 021C 2KG... - $6760",
+      "timestamp": "2025-10-06T06:56:43.265195+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 9 for 'fertilizer': Canola 021C 2KG...",
+      "timestamp": "2025-10-06T06:56:42.555779+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Barseem Seed... - $5250",
+      "timestamp": "2025-10-06T06:56:41.573813+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 8 for 'fertilizer': Barseem Seed...",
+      "timestamp": "2025-10-06T06:56:40.867455+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Speedfol Cereal... - $2155",
+      "timestamp": "2025-10-06T06:56:39.944717+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 7 for 'fertilizer': Speedfol Cereal...",
+      "timestamp": "2025-10-06T06:56:39.229812+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T06:56:38.307375+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 6 for 'fertilizer': Pimeko (...",
+      "timestamp": "2025-10-06T06:56:37.618994+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T06:56:36.664873+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 5 for 'fertilizer': Nativo 75...",
+      "timestamp": "2025-10-06T06:56:35.803161+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T06:56:34.866801+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 4 for 'fertilizer': Fipronil Arika...",
+      "timestamp": "2025-10-06T06:56:34.150810+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T06:56:32.001567+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 3 for 'fertilizer': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T06:56:31.300514+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T06:56:30.376544+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 2 for 'fertilizer': Full Green Bop...",
+      "timestamp": "2025-10-06T06:56:29.574490+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T06:56:28.635563+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Processing result 1 for 'fertilizer': Magicate...",
+      "timestamp": "2025-10-06T06:56:27.892345+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Found 10 results for 'fertilizer'",
+      "timestamp": "2025-10-06T06:56:27.437934+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "[1/5] Searching for: fertilizer",
+      "timestamp": "2025-10-06T06:56:22.716670+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Starting scraping for 5 products",
+      "timestamp": "2025-10-06T06:56:22.228742+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Scraping engine initialized: GenericScrapingEngine",
+      "timestamp": "2025-10-06T06:56:21.770586+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Initializing scraping engine for marketplace: other",
+      "timestamp": "2025-10-06T06:56:21.290125+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Products to search: fertilizer, seeds, pesticides...",
+      "timestamp": "2025-10-06T06:56:20.809003+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Using product list 'fertilizer test' with 5 products",
+      "timestamp": "2025-10-06T06:56:20.350358+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Website: Kissan Ghar (active: True)",
+      "timestamp": "2025-10-06T06:56:19.499264+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Job status updated to 'running'",
+      "timestamp": "2025-10-06T06:56:18.690945+00:00"
+    },
+    {
+      "job_id": 17,
+      "level": "info",
+      "message": "Task started - Found job: fertilizer test 33",
+      "timestamp": "2025-10-06T06:56:17.889503+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Scraping job completed. Products scraped: 50, Found: 50, Errors: 0",
+      "timestamp": "2025-10-06T06:55:46.927547+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Updating job status to 'completed'",
+      "timestamp": "2025-10-06T06:55:46.228089+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Bordox Super... - $1495",
+      "timestamp": "2025-10-06T06:55:45.281237+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 10 for 'rice seeds': Bordox Super...",
+      "timestamp": "2025-10-06T06:55:44.509979+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Canola 021C 2KG... - $6760",
+      "timestamp": "2025-10-06T06:55:43.327750+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 9 for 'rice seeds': Canola 021C 2KG...",
+      "timestamp": "2025-10-06T06:55:42.632213+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Barseem Seed... - $5250",
+      "timestamp": "2025-10-06T06:55:41.632927+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 8 for 'rice seeds': Barseem Seed...",
+      "timestamp": "2025-10-06T06:55:40.902168+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Speedfol Cereal... - $2155",
+      "timestamp": "2025-10-06T06:55:39.974361+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 7 for 'rice seeds': Speedfol Cereal...",
+      "timestamp": "2025-10-06T06:55:39.270828+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T06:55:38.328176+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 6 for 'rice seeds': Pimeko (...",
+      "timestamp": "2025-10-06T06:55:37.576043+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T06:55:36.630647+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 5 for 'rice seeds': Nativo 75...",
+      "timestamp": "2025-10-06T06:55:35.903143+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T06:55:34.883240+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 4 for 'rice seeds': Fipronil Arika...",
+      "timestamp": "2025-10-06T06:55:34.139939+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T06:55:33.087867+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 3 for 'rice seeds': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T06:55:32.384303+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T06:55:31.428423+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 2 for 'rice seeds': Full Green Bop...",
+      "timestamp": "2025-10-06T06:55:30.738972+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T06:55:29.794312+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 1 for 'rice seeds': Magicate...",
+      "timestamp": "2025-10-06T06:55:29.106207+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Found 10 results for 'rice seeds'",
+      "timestamp": "2025-10-06T06:55:28.625599+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "[5/5] Searching for: rice seeds",
+      "timestamp": "2025-10-06T06:55:24.661505+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Bordox Super... - $1495",
+      "timestamp": "2025-10-06T06:55:23.678679+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 10 for 'wheat seeds': Bordox Super...",
+      "timestamp": "2025-10-06T06:55:22.977844+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Canola 021C 2KG... - $6760",
+      "timestamp": "2025-10-06T06:55:22.023214+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 9 for 'wheat seeds': Canola 021C 2KG...",
+      "timestamp": "2025-10-06T06:55:21.273768+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Barseem Seed... - $5250",
+      "timestamp": "2025-10-06T06:55:20.343458+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 8 for 'wheat seeds': Barseem Seed...",
+      "timestamp": "2025-10-06T06:55:19.621790+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Speedfol Cereal... - $2155",
+      "timestamp": "2025-10-06T06:55:18.679608+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 7 for 'wheat seeds': Speedfol Cereal...",
+      "timestamp": "2025-10-06T06:55:17.976221+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T06:55:17.045376+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 6 for 'wheat seeds': Pimeko (...",
+      "timestamp": "2025-10-06T06:55:16.351074+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T06:55:15.422720+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 5 for 'wheat seeds': Nativo 75...",
+      "timestamp": "2025-10-06T06:55:14.720194+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T06:55:13.796679+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 4 for 'wheat seeds': Fipronil Arika...",
+      "timestamp": "2025-10-06T06:55:13.099455+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T06:55:12.168059+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 3 for 'wheat seeds': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T06:55:11.451839+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T06:55:10.520728+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 2 for 'wheat seeds': Full Green Bop...",
+      "timestamp": "2025-10-06T06:55:09.826452+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T06:55:08.888129+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 1 for 'wheat seeds': Magicate...",
+      "timestamp": "2025-10-06T06:55:08.124143+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Found 10 results for 'wheat seeds'",
+      "timestamp": "2025-10-06T06:55:07.632695+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "[4/5] Searching for: wheat seeds",
+      "timestamp": "2025-10-06T06:55:03.888316+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Bordox Super... - $1495",
+      "timestamp": "2025-10-06T06:55:02.957270+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 10 for 'pesticides': Bordox Super...",
+      "timestamp": "2025-10-06T06:55:02.256598+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Canola 021C 2KG... - $6760",
+      "timestamp": "2025-10-06T06:55:01.333837+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 9 for 'pesticides': Canola 021C 2KG...",
+      "timestamp": "2025-10-06T06:55:00.605540+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Barseem Seed... - $5250",
+      "timestamp": "2025-10-06T06:54:59.664475+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 8 for 'pesticides': Barseem Seed...",
+      "timestamp": "2025-10-06T06:54:58.977549+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Speedfol Cereal... - $2155",
+      "timestamp": "2025-10-06T06:54:58.018922+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 7 for 'pesticides': Speedfol Cereal...",
+      "timestamp": "2025-10-06T06:54:57.321860+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T06:54:56.356206+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 6 for 'pesticides': Pimeko (...",
+      "timestamp": "2025-10-06T06:54:55.588387+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T06:54:54.670421+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 5 for 'pesticides': Nativo 75...",
+      "timestamp": "2025-10-06T06:54:53.960144+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T06:54:53.042835+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 4 for 'pesticides': Fipronil Arika...",
+      "timestamp": "2025-10-06T06:54:52.346281+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T06:54:51.404229+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 3 for 'pesticides': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T06:54:50.699269+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T06:54:49.772418+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 2 for 'pesticides': Full Green Bop...",
+      "timestamp": "2025-10-06T06:54:49.023401+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T06:54:48.019054+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 1 for 'pesticides': Magicate...",
+      "timestamp": "2025-10-06T06:54:47.328285+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Found 10 results for 'pesticides'",
+      "timestamp": "2025-10-06T06:54:46.854697+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "[3/5] Searching for: pesticides",
+      "timestamp": "2025-10-06T06:54:43.063223+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Bordox Super... - $1495",
+      "timestamp": "2025-10-06T06:54:42.132829+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 10 for 'seeds': Bordox Super...",
+      "timestamp": "2025-10-06T06:54:41.430277+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Canola 021C 2KG... - $6760",
+      "timestamp": "2025-10-06T06:54:40.498384+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 9 for 'seeds': Canola 021C 2KG...",
+      "timestamp": "2025-10-06T06:54:39.810176+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Barseem Seed... - $5250",
+      "timestamp": "2025-10-06T06:54:38.807911+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 8 for 'seeds': Barseem Seed...",
+      "timestamp": "2025-10-06T06:54:38.112782+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Speedfol Cereal... - $2155",
+      "timestamp": "2025-10-06T06:54:37.154033+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 7 for 'seeds': Speedfol Cereal...",
+      "timestamp": "2025-10-06T06:54:36.454178+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T06:54:35.478205+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 6 for 'seeds': Pimeko (...",
+      "timestamp": "2025-10-06T06:54:34.781415+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T06:54:33.858534+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 5 for 'seeds': Nativo 75...",
+      "timestamp": "2025-10-06T06:54:33.126103+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T06:54:32.178942+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 4 for 'seeds': Fipronil Arika...",
+      "timestamp": "2025-10-06T06:54:31.493784+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T06:54:30.569454+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 3 for 'seeds': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T06:54:29.861627+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T06:54:28.935853+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 2 for 'seeds': Full Green Bop...",
+      "timestamp": "2025-10-06T06:54:28.237170+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T06:54:27.309741+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 1 for 'seeds': Magicate...",
+      "timestamp": "2025-10-06T06:54:26.614694+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Found 10 results for 'seeds'",
+      "timestamp": "2025-10-06T06:54:26.145649+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "[2/5] Searching for: seeds",
+      "timestamp": "2025-10-06T06:54:22.473281+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Bordox Super... - $1495",
+      "timestamp": "2025-10-06T06:54:21.529210+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 10 for 'fertilizer': Bordox Super...",
+      "timestamp": "2025-10-06T06:54:20.829635+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Canola 021C 2KG... - $6760",
+      "timestamp": "2025-10-06T06:54:19.816102+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 9 for 'fertilizer': Canola 021C 2KG...",
+      "timestamp": "2025-10-06T06:54:19.062929+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Barseem Seed... - $5250",
+      "timestamp": "2025-10-06T06:54:18.099945+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 8 for 'fertilizer': Barseem Seed...",
+      "timestamp": "2025-10-06T06:54:17.391280+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Speedfol Cereal... - $2155",
+      "timestamp": "2025-10-06T06:54:16.463498+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 7 for 'fertilizer': Speedfol Cereal...",
+      "timestamp": "2025-10-06T06:54:15.724495+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Pimeko (... - $715",
+      "timestamp": "2025-10-06T06:54:14.572023+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 6 for 'fertilizer': Pimeko (...",
+      "timestamp": "2025-10-06T06:54:13.872810+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Nativo 75... - $1175",
+      "timestamp": "2025-10-06T06:54:12.939316+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 5 for 'fertilizer': Nativo 75...",
+      "timestamp": "2025-10-06T06:54:12.152876+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Fipronil Arika... - $1280",
+      "timestamp": "2025-10-06T06:54:11.235717+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 4 for 'fertilizer': Fipronil Arika...",
+      "timestamp": "2025-10-06T06:54:10.532386+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Sona Urea 50kg... - $4545",
+      "timestamp": "2025-10-06T06:54:09.583040+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 3 for 'fertilizer': Sona Urea 50kg...",
+      "timestamp": "2025-10-06T06:54:08.880725+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Full Green Bop... - $3725",
+      "timestamp": "2025-10-06T06:54:07.945343+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 2 for 'fertilizer': Full Green Bop...",
+      "timestamp": "2025-10-06T06:54:07.245928+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "success",
+      "message": "Saved product: Magicate... - $725",
+      "timestamp": "2025-10-06T06:54:06.308502+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Processing result 1 for 'fertilizer': Magicate...",
+      "timestamp": "2025-10-06T06:54:05.478119+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Found 10 results for 'fertilizer'",
+      "timestamp": "2025-10-06T06:54:04.995959+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "[1/5] Searching for: fertilizer",
+      "timestamp": "2025-10-06T06:54:00.259105+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Starting scraping for 5 products",
+      "timestamp": "2025-10-06T06:53:59.791566+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Scraping engine initialized: GenericScrapingEngine",
+      "timestamp": "2025-10-06T06:53:59.325681+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Initializing scraping engine for marketplace: other",
+      "timestamp": "2025-10-06T06:53:58.859412+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Products to search: fertilizer, seeds, pesticides...",
+      "timestamp": "2025-10-06T06:53:58.399575+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Using product list 'fertilizer test' with 5 products",
+      "timestamp": "2025-10-06T06:53:57.936982+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Website: Kissan Ghar (active: True)",
+      "timestamp": "2025-10-06T06:53:57.165416+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Job status updated to 'running'",
+      "timestamp": "2025-10-06T06:53:56.447260+00:00"
+    },
+    {
+      "job_id": 16,
+      "level": "info",
+      "message": "Task started - Found job: Restart Test Job",
+      "timestamp": "2025-10-06T06:53:55.714041+00:00"
+    },
+    {
+      "job_id": 15,
+      "level": "info",
+      "message": "Debug test log",
+      "timestamp": "2025-10-06T06:51:29.806767+00:00"
+    },
+    {
+      "job_id": 14,
+      "level": "info",
+      "message": "Test from shell",
+      "timestamp": "2025-10-06T06:50:54.663031+00:00"
+    },
+    {
+      "job_id": 13,
+      "level": "info",
+      "message": "Test log message",
+      "timestamp": "2025-10-06T06:44:08.391611+00:00"
+    }
+  ],
+  "violations": []
+}
