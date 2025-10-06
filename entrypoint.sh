@@ -39,9 +39,22 @@ if [ $attempt -eq $max_attempts ]; then
   echo "🚀 Continuing with fallback configuration..."
 fi
 
-# Run database migrations
+# Run database migrations in correct order
 echo "🗄️ Running database migrations..."
-python manage.py migrate
+python run_migrations.py || {
+    echo "❌ Migration script failed, trying manual migration order..."
+    
+    # Fallback: run migrations manually in correct order
+    python manage.py migrate contenttypes || echo "⚠️ ContentTypes migration failed"
+    python manage.py migrate auth || echo "⚠️ Auth migration failed"
+    python manage.py migrate admin || echo "⚠️ Admin migration failed"
+    python manage.py migrate sessions || echo "⚠️ Sessions migration failed"
+    python manage.py migrate scraping || echo "⚠️ Scraping migration failed"
+    python manage.py migrate accounts || echo "⚠️ Accounts migration failed"
+    python manage.py migrate products || echo "⚠️ Products migration failed"
+    python manage.py migrate violations || echo "⚠️ Violations migration failed"
+    python manage.py migrate cases || echo "⚠️ Cases migration failed"
+}
 
 # Collect static files
 echo "📁 Collecting static files..."

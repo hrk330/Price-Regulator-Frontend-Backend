@@ -32,6 +32,9 @@ COPY . /app/
 # Set working directory to backend
 WORKDIR /app/backend
 
+# Copy migration script
+COPY backend/run_migrations.py /app/backend/run_migrations.py
+
 # Copy and make entrypoint script executable
 COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh

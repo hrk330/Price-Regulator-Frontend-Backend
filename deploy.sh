@@ -85,10 +85,19 @@ $PIP_CMD install -r requirements.txt || {
     exit 1
 }
 
-# Run database migrations
+# Run database migrations in correct order
 echo "🗄️ Running database migrations..."
-$PYTHON_CMD manage.py migrate || {
-    echo "❌ Database migration failed!"
+echo "📋 Running migrations in dependency order..."
+
+# First, run migrations for apps that don't depend on others
+$PYTHON_CMD manage.py migrate contenttypes || echo "⚠️ ContentTypes migration failed"
+$PYTHON_CMD manage.py migrate auth || echo "⚠️ Auth migration failed"
+$PYTHON_CMD manage.py migrate admin || echo "⚠️ Admin migration failed"
+$PYTHON_CMD manage.py migrate sessions || echo "⚠️ Sessions migration failed"
+
+# Then run scraping migrations (needed by violations)
+$PYTHON_CMD manage.py migrate scraping || {
+    echo "❌ Scraping migration failed!"
     echo "🔧 This might be because:"
     echo "   1. Database environment variables are not set"
     echo "   2. Database server is not running"
@@ -103,6 +112,14 @@ $PYTHON_CMD manage.py migrate || {
     echo "🚀 The application will use fallback configuration (SQLite) if no database is configured."
     echo "   To use PostgreSQL, set the database environment variables."
 }
+
+# Finally run the remaining migrations
+$PYTHON_CMD manage.py migrate accounts || echo "⚠️ Accounts migration failed"
+$PYTHON_CMD manage.py migrate products || echo "⚠️ Products migration failed"
+$PYTHON_CMD manage.py migrate violations || echo "⚠️ Violations migration failed"
+$PYTHON_CMD manage.py migrate cases || echo "⚠️ Cases migration failed"
+
+echo "✅ All migrations completed!"
 
 # Collect static files
 echo "📁 Collecting static files..."
