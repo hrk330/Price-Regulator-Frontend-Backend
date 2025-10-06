@@ -1,0 +1,44 @@
+# Ignore development files
+.git/
+.gitignore
+*.log
+*.pyc
+__pycache__/
+.pytest_cache/
+.coverage
+.venv/
+venv/
+env/
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore test files
+test_*.py
+*_test.py
+tests/
+
+# Ignore documentation
+*.md
+docs/
+
+# Ignore local development files
+.env
+.env.local
+.env.development
+
+# Ignore frontend node_modules (if not needed for backend)
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Ignore backup files
+*.bak
+*.backup

@@ -1,0 +1,30 @@
+{
+    "name": "price-regulation-monitoring-system",
+    "version": "1.0.0",
+    "description": "Price Regulation Monitoring System with Django Backend and Next.js Frontend",
+    "scripts": {
+        "start": "bash start.sh"
+    },
+    "engines": {
+        "python": "3.12"
+    },
+    "build": {
+        "command": "cd backend && pip install -r requirements.txt",
+        "directory": "backend"
+    },
+    "start": {
+        "command": "bash start.sh",
+        "directory": "."
+    },
+    "environment": {
+        "DJANGO_SETTINGS_MODULE": "price_monitoring.settings",
+        "PYTHONPATH": "backend"
+    },
+    "ports": {
+        "8000": "Django Backend API"
+    },
+    "healthcheck": {
+        "path": "/admin/",
+        "port": 8000
+    }
+}
