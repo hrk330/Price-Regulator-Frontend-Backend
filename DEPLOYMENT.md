@@ -91,6 +91,11 @@ The deployment script will automatically:
 2. **Static files not loading**: Check `STATIC_ROOT` configuration
 3. **Redis connection issues**: Verify `REDIS_URL` format
 4. **Admin user not created**: Check logs for user creation errors
+5. **`ModuleNotFoundError: No module named 'pkg_resources'`**:
+   - This is fixed by adding `setuptools>=65.0.0` to requirements.txt
+   - The deployment scripts now install setuptools first
+   - If still occurring, run: `pip install --upgrade setuptools wheel`
+6. **Python command not found**: Use the `deploy.sh` script which auto-detects Python
 
 ### Scaling
 

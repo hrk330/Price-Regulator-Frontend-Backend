@@ -3,9 +3,13 @@ set -e
 
 echo "🚀 Starting Price Regulation Monitoring System..."
 
+# Ensure setuptools is available
+echo "🔧 Ensuring setuptools is available..."
+pip install --upgrade setuptools wheel || echo "⚠️ Could not upgrade setuptools, continuing..."
+
 # Wait for database to be ready
 echo "⏳ Waiting for database..."
-while ! python manage.py check --database default; do
+while ! python manage.py check --database default 2>/dev/null; do
   echo "Database is unavailable - sleeping"
   sleep 1
 done

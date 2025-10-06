@@ -18,7 +18,7 @@
         "directory": "."
     },
     "environment": {
-        "DJANGO_SETTINGS_MODULE": "price_monitoring.settings",
+        "DJANGO_SETTINGS_MODULE": "price_monitoring.settings_production",
         "PYTHONPATH": "backend"
     },
     "ports": {

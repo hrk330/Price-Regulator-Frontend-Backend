@@ -33,6 +33,7 @@ cd backend
 
 # Install Python dependencies
 echo "📦 Installing Python dependencies..."
+$PIP_CMD install --upgrade pip setuptools wheel
 $PIP_CMD install -r requirements.txt
 
 # Run database migrations

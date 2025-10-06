@@ -79,7 +79,7 @@ cd backend || {
 
 # Install Python dependencies
 echo "📦 Installing Python dependencies..."
-$PIP_CMD install --upgrade pip
+$PIP_CMD install --upgrade pip setuptools wheel
 $PIP_CMD install -r requirements.txt || {
     echo "❌ Failed to install dependencies!"
     exit 1
