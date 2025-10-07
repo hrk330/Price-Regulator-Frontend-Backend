@@ -64,4 +64,5 @@ class RegulatedProduct(models.Model):
     @property
     def price_violation_threshold(self):
         """Calculate 10% above government price as violation threshold."""
-        return self.gov_price * 1.10
+        from decimal import Decimal
+        return self.gov_price * Decimal('1.10')

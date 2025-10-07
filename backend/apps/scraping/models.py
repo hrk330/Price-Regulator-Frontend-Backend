@@ -13,6 +13,12 @@ class ScrapingWebsite(models.Model):
     scraping_config = models.JSONField(default=dict, help_text="CSS selectors and parsing rules")
     rate_limit_delay = models.FloatField(default=1.0, help_text="Delay between requests in seconds")
     headers = models.JSONField(default=dict, help_text="Custom headers for requests")
+    
+    # Selenium Configuration
+    use_selenium = models.BooleanField(default=False, help_text="Use Selenium for scraping this website")
+    fallback_to_selenium = models.BooleanField(default=True, help_text="Fall back to Selenium if direct requests fail")
+    selenium_config = models.JSONField(default=dict, help_text="Selenium-specific configuration overrides")
+    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

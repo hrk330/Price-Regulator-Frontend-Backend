@@ -1,8 +1,9 @@
 from celery import shared_task
 from django.utils import timezone
+from decimal import Decimal
 from .models import ScrapingJob, ScrapedProduct, ScrapingWebsite, ProductSearchList, ScrapingJobLog
 from apps.products.models import RegulatedProduct
-from apps.violations.models import Violation
+from apps.violations.models import Violation, ViolationCheckReport
 from .scraping_engines import get_scraping_engine
 import logging
 import json
@@ -76,7 +77,10 @@ def scrape_marketplace(self, job_id):
             'scraping_config': website.scraping_config,
             'rate_limit_delay': website.rate_limit_delay,
             'headers': website.headers,
-            'marketplace': job.marketplace
+            'marketplace': job.marketplace,
+            'use_selenium': website.use_selenium,
+            'fallback_to_selenium': website.fallback_to_selenium,
+            'selenium_config': website.selenium_config
         }
         
         log_job_progress(job, 'info', f"Initializing scraping engine for marketplace: {job.marketplace}")
@@ -149,6 +153,11 @@ def scrape_marketplace(self, job_id):
         job.current_progress = f"Completed - Products scraped: {products_scraped}, Found: {products_found}, Errors: {errors_count}"
         job.save()
         
+        # Invalidate cache after scraping completes
+        from django.core.cache import cache
+        cache.delete('full_violation_report')
+        cache.delete('violation_stats')
+        
         log_job_progress(job, 'success', f"Scraping job completed. Products scraped: {products_scraped}, Found: {products_found}, Errors: {errors_count}")
         
         return f"Scraping completed. Products scraped: {products_scraped}, Found: {products_found}, Errors: {errors_count}"
@@ -175,38 +184,73 @@ def check_price_violation_for_product(product_name, scraped_product):
     """Check if scraped price violates government regulations for a specific product."""
     
     try:
-        # Find matching regulated product
+        # Use scraped product name for matching, not the search query
+        scraped_product_name = scraped_product.product_name
+        
+        # Find matching regulated product using scraped product name
         regulated_products = RegulatedProduct.objects.filter(
-            name__icontains=product_name,
+            name__icontains=scraped_product_name,
             is_active=True
         )
         
         if not regulated_products.exists():
-            # Try fuzzy matching
+            # Try fuzzy matching against all regulated products
             regulated_products = RegulatedProduct.objects.filter(
                 is_active=True
             )
             
             for regulated_product in regulated_products:
-                if is_product_match(product_name, regulated_product.name):
+                if is_product_match(scraped_product_name, regulated_product.name):
+                    logger.info(f"Matched '{scraped_product_name}' with '{regulated_product.name}'")
                     check_single_violation(regulated_product, scraped_product)
                     break
+            else:
+                logger.info(f"No match found for scraped product: '{scraped_product_name}'")
         else:
             # Check against all matching regulated products
             for regulated_product in regulated_products:
+                logger.info(f"Direct match found: '{scraped_product_name}' with '{regulated_product.name}'")
                 check_single_violation(regulated_product, scraped_product)
                 
     except Exception as e:
-        logger.error(f"Error checking violations for {product_name}: {str(e)}")
+        logger.error(f"Error checking violations for {scraped_product_name}: {str(e)}")
 
 
 def is_product_match(search_name, regulated_name):
     """Check if two product names are similar enough to be considered a match."""
     import difflib
+    import re
+    
+    def extract_keywords(name):
+        """Extract meaningful keywords from product name."""
+        # Remove common words and extract key terms
+        name = name.lower().strip()
+        
+        # Remove common words that don't help with matching
+        stop_words = ['the', 'and', 'or', 'of', 'in', 'on', 'at', 'to', 'for', 'with', 'by', 'kg', 'liter', 'l', 'piece', 'pcs', 'pack', 'bag', 'box']
+        
+        # Split by common separators and clean
+        words = re.split(r'[\s\-_\(\)\[\]\/]+', name)
+        keywords = [word for word in words if word and word not in stop_words and len(word) > 2]
+        
+        return keywords
+    
+    def normalize_for_matching(name):
+        """Normalize product name for better matching."""
+        name = name.lower().strip()
+        
+        # Remove common variations
+        name = re.sub(r'\d+kg', '', name)  # Remove weight specifications
+        name = re.sub(r'\d+liter?', '', name)  # Remove volume specifications
+        name = re.sub(r'\d+pc?s?', '', name)  # Remove piece specifications
+        name = re.sub(r'[\(\)\[\]]', '', name)  # Remove brackets
+        name = re.sub(r'\s+', ' ', name)  # Normalize spaces
+        
+        return name.strip()
     
     # Normalize names
-    search_normalized = search_name.lower().strip()
-    regulated_normalized = regulated_name.lower().strip()
+    search_normalized = normalize_for_matching(search_name)
+    regulated_normalized = normalize_for_matching(regulated_name)
     
     # Check for exact match
     if search_normalized == regulated_normalized:
@@ -216,35 +260,87 @@ def is_product_match(search_name, regulated_name):
     if search_normalized in regulated_normalized or regulated_normalized in search_normalized:
         return True
     
-    # Check similarity ratio
+    # Extract keywords and check for keyword overlap
+    search_keywords = extract_keywords(search_name)
+    regulated_keywords = extract_keywords(regulated_name)
+    
+    # Check if any significant keywords match
+    keyword_matches = 0
+    for search_kw in search_keywords:
+        for reg_kw in regulated_keywords:
+            if search_kw in reg_kw or reg_kw in search_kw:
+                keyword_matches += 1
+                break
+    
+    # If we have keyword matches, it's likely a match
+    if keyword_matches > 0 and len(search_keywords) > 0:
+        match_ratio = keyword_matches / len(search_keywords)
+        if match_ratio >= 0.5:  # At least 50% of keywords match
+            return True
+    
+    # Check similarity ratio as fallback
     similarity = difflib.SequenceMatcher(None, search_normalized, regulated_normalized).ratio()
-    return similarity > 0.7
+    return similarity > 0.6  # Lowered threshold for better matching
 
 
 def check_single_violation(regulated_product, scraped_product):
     """Check violation for a single regulated product against scraped product."""
     
     violation_threshold = regulated_product.price_violation_threshold
+    scraped_price = scraped_product.listed_price
+    regulated_price = regulated_product.gov_price
     
-    if scraped_product.listed_price > violation_threshold:
-        # Calculate violation severity
-        price_difference = scraped_product.listed_price - regulated_product.gov_price
-        percentage_over = (price_difference / regulated_product.gov_price) * 100
-        
-        if percentage_over <= 20:
-            severity = 'low'
+    # Calculate differences
+    price_difference = scraped_price - regulated_price
+    percentage_difference = (price_difference / regulated_price) * 100 if regulated_price > 0 else 0
+    
+    # Determine compliance status
+    has_violation = scraped_price > violation_threshold
+    compliance_status = 'violation' if has_violation else 'ok'
+    
+    # Calculate severity and penalty if violation
+    violation_severity = None
+    proposed_penalty = None
+    
+    if has_violation:
+        if percentage_difference <= 20:
+            violation_severity = 'low'
             proposed_penalty = Decimal('100')
-        elif percentage_over <= 50:
-            severity = 'medium'
+        elif percentage_difference <= 50:
+            violation_severity = 'medium'
             proposed_penalty = Decimal('500')
-        elif percentage_over <= 100:
-            severity = 'high'
+        elif percentage_difference <= 100:
+            violation_severity = 'high'
             proposed_penalty = Decimal('1000')
         else:
-            severity = 'critical'
+            violation_severity = 'critical'
             proposed_penalty = Decimal('2000')
-        
-        # Check if violation already exists
+    
+    # Create notes
+    notes = f"Scraped: Rs.{scraped_price} | Regulated: Rs.{regulated_price} | "
+    notes += f"Difference: Rs.{price_difference} ({percentage_difference:.1f}%)"
+    
+    if has_violation:
+        notes += f" | Severity: {violation_severity} | Penalty: Rs.{proposed_penalty}"
+    
+    # Create or update violation check report
+    report, report_created = ViolationCheckReport.objects.get_or_create(
+        regulated_product=regulated_product,
+        scraped_product=scraped_product,
+        defaults={
+            'has_violation': has_violation,
+            'compliance_status': compliance_status,
+            'price_difference': price_difference,
+            'percentage_difference': Decimal(str(round(percentage_difference, 2))),
+            'violation_severity': violation_severity,
+            'proposed_penalty': proposed_penalty,
+            'notes': notes,
+        }
+    )
+    
+    # Create violation record if needed
+    violation_record = None
+    if has_violation:
         existing_violation = Violation.objects.filter(
             regulated_product=regulated_product,
             scraped_product=scraped_product,
@@ -253,17 +349,24 @@ def check_single_violation(regulated_product, scraped_product):
         
         if not existing_violation:
             # Create violation
-            Violation.objects.create(
+            violation_record = Violation.objects.create(
                 regulated_product=regulated_product,
                 scraped_product=scraped_product,
                 violation_type='price_exceeded',
-                severity=severity,
+                severity=violation_severity,
                 proposed_penalty=proposed_penalty,
                 status='pending',
-                notes=f"Price ${scraped_product.listed_price} exceeds regulated price ${regulated_product.gov_price} by {percentage_over:.1f}%"
+                notes=notes
             )
             
-            logger.info(f"Created violation: {regulated_product.name} - {severity} severity")
+            logger.info(f"Created violation: {regulated_product.name} - {violation_severity} severity")
+        else:
+            violation_record = existing_violation
+        
+        # Link violation record to report
+        if violation_record and not report.violation_record:
+            report.violation_record = violation_record
+            report.save()
 
 
 @shared_task

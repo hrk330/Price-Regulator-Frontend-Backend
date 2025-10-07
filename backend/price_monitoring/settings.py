@@ -284,3 +284,20 @@ SPECTACULAR_SETTINGS = {
         'expandResponses': '200,201',
     },
 }
+
+# Selenium Configuration
+SELENIUM_CONFIG = {
+    'HEADLESS': config('SELENIUM_HEADLESS', default=True, cast=bool),
+    'BROWSER': config('SELENIUM_BROWSER', default='chrome'),  # 'chrome' or 'firefox'
+    'IMPLICIT_WAIT': config('SELENIUM_IMPLICIT_WAIT', default=10, cast=int),
+    'PAGE_LOAD_TIMEOUT': config('SELENIUM_PAGE_LOAD_TIMEOUT', default=30, cast=int),
+    'WINDOW_SIZE': (1920, 1080),
+    'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'DISABLE_IMAGES': config('SELENIUM_DISABLE_IMAGES', default=True, cast=bool),
+    'DISABLE_CSS': config('SELENIUM_DISABLE_CSS', default=False, cast=bool),
+    'DISABLE_JS': config('SELENIUM_DISABLE_JS', default=False, cast=bool),
+    'SCREENSHOT_ON_ERROR': config('SELENIUM_SCREENSHOT_ON_ERROR', default=True, cast=bool),
+    'SCREENSHOT_DIR': BASE_DIR / 'logs' / 'screenshots',
+    'MAX_RETRIES': config('SELENIUM_MAX_RETRIES', default=3, cast=int),
+    'RETRY_DELAY': config('SELENIUM_RETRY_DELAY', default=2, cast=int),
+}
