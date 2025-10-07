@@ -39,9 +39,15 @@ class User(AbstractUser):
 class UserSession(models.Model):
     """Track user sessions across multiple devices."""
     
+    SESSION_TYPE_CHOICES = [
+        ('api', 'API Session'),
+        ('admin', 'Admin Session'),
+    ]
+    
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sessions')
     device_id = models.CharField(max_length=255, help_text="Unique identifier for the device")
+    session_type = models.CharField(max_length=10, choices=SESSION_TYPE_CHOICES, default='api', help_text="Type of session")
     access_token = models.TextField()
     refresh_token = models.TextField()
     ip_address = models.GenericIPAddressField()

@@ -70,7 +70,7 @@ class UserSessionSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = UserSession
-        fields = ['id', 'user', 'device_id', 'ip_address', 'user_agent', 
+        fields = ['id', 'user', 'device_id', 'session_type', 'ip_address', 'user_agent', 
                  'last_activity', 'expires_at', 'is_active', 'created_at']
         read_only_fields = ['id', 'user', 'ip_address', 'user_agent', 
                            'last_activity', 'expires_at', 'created_at']

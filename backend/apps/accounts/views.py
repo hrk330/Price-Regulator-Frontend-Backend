@@ -52,6 +52,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
                 user=user,
                 device_id=device_id,
                 defaults={
+                    'session_type': 'api',
                     'access_token': access_token,
                     'refresh_token': refresh_token,
                     'ip_address': ip_address,

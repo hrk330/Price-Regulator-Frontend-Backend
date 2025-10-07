@@ -17,7 +17,9 @@ def api_documentation(request):
                 "register": "POST /api/auth/register/",
                 "me": "GET /api/auth/me/",
                 "refresh": "POST /api/auth/refresh/",
-                "logout": "POST /api/auth/logout/"
+                "logout": "POST /api/auth/logout/",
+                "sessions": "GET /api/auth/sessions/",
+                "revoke_session": "DELETE /api/auth/sessions/{session_id}/revoke/"
             },
             "products": {
                 "regulated_products": "GET/POST /api/products/regulated-products/",
@@ -60,6 +62,7 @@ urlpatterns = [
     
     # API Endpoints
     path('api/auth/', include('apps.accounts.urls')),
+    path('api/auth/sessions/', include('apps.accounts.session_urls')),
     path('api/products/', include('apps.products.urls')),
     path('api/violations/', include('apps.violations.urls')),
     path('api/cases/', include('apps.cases.urls')),
