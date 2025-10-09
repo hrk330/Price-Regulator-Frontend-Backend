@@ -2,7 +2,7 @@
 const path = require('path')
 
 const nextConfig = {
-  // ✅ Automatically select correct API URL
+  reactStrictMode: true,
   env: {
     NEXT_PUBLIC_API_URL:
       process.env.NEXT_PUBLIC_API_URL ||
@@ -10,30 +10,23 @@ const nextConfig = {
         ? 'https://price-regulator-frontend-backend-production.up.railway.app/api'
         : 'http://localhost:8000/api'),
   },
-
   webpack: (config, { isServer }) => {
-    // ✅ Alias for absolute imports - more explicit for Vercel
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': path.resolve(process.cwd()),
-      '@/lib': path.resolve(process.cwd(), 'lib'),
-      '@/components': path.resolve(process.cwd(), 'components'),
-      '@/app': path.resolve(process.cwd(), 'app'),
+      '@': path.resolve(__dirname),
+      '@/*': path.resolve(__dirname, '*'),
     }
 
-    // ✅ Ensure proper module resolution
-    config.resolve.modules = [
-      path.resolve(process.cwd(), 'node_modules'),
-      'node_modules'
-    ]
-
-    // ✅ Prevent "fs" issue on client side
+    // Disable fs for client bundles
     if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-      }
+      config.resolve.fallback = { fs: false }
     }
+
+    // Ensure consistent resolution
+    config.resolve.modules = [
+      path.resolve(__dirname, 'node_modules'),
+      'node_modules',
+    ]
 
     return config
   },
