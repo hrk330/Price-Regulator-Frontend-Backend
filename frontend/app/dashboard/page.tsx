@@ -26,7 +26,7 @@ export default function DashboardPage() {
       
       // Redirect to role-specific dashboard
       if (currentUser.role === 'admin') {
-        router.push('/dashboard/admin')
+        router.push('/admin')
       } else if (currentUser.role === 'investigator') {
         router.push('/dashboard/investigator')
       } else if (currentUser.role === 'regulator') {

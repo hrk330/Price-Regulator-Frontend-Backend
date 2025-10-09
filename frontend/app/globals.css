@@ -80,4 +80,36 @@
     .badge-info {
         @apply bg-primary-100 text-primary-800;
     }
+
+    .badge-error {
+        @apply bg-red-100 text-red-800;
+    }
+
+    .badge-neutral {
+        @apply bg-gray-100 text-gray-800;
+    }
+
+    .btn-outline {
+        @apply border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-gray-500;
+    }
+
+    .btn-sm {
+        @apply px-3 py-1.5 text-sm;
+    }
+
+    .toggle {
+        @apply relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+    }
+
+    .toggle-primary {
+        @apply bg-primary-600 focus:ring-primary-500;
+    }
+
+    .toggle:checked {
+        @apply bg-primary-600;
+    }
+
+    .toggle:not(:checked) {
+        @apply bg-gray-200;
+    }
 }

@@ -25,13 +25,13 @@ interface SidebarProps {
 
 const navigation = {
   admin: [
-    { name: 'Dashboard', href: '/dashboard/admin', icon: LayoutDashboard },
-    { name: 'Products', href: '/dashboard/admin/products', icon: Package },
-    { name: 'Scraping Jobs', href: '/dashboard/admin/scraping', icon: Search },
-    { name: 'Violations', href: '/dashboard/admin/violations', icon: AlertTriangle },
-    { name: 'Cases', href: '/dashboard/admin/cases', icon: FileText },
-    { name: 'Reports', href: '/dashboard/admin/reports', icon: BarChart3 },
-    { name: 'Sessions', href: '/dashboard/admin/sessions', icon: Users },
+    { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+    { name: 'Products', href: '/admin/products', icon: Package },
+    { name: 'Scraping Jobs', href: '/admin/scraping', icon: Search },
+    { name: 'Violations', href: '/admin/violations', icon: AlertTriangle },
+    { name: 'Cases', href: '/admin/cases', icon: FileText },
+    { name: 'Reports', href: '/admin/reports', icon: BarChart3 },
+    { name: 'Sessions', href: '/admin/users', icon: Users },
   ],
   investigator: [
     { name: 'Dashboard', href: '/dashboard/investigator', icon: LayoutDashboard },

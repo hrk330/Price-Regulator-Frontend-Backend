@@ -62,7 +62,7 @@ export default function ProductsPage() {
           </p>
         </div>
         <Link
-          href="/dashboard/admin/products/new"
+          href="/admin/products/new"
           className="btn btn-primary flex items-center"
         >
           <Plus className="h-4 w-4 mr-2" />
@@ -155,7 +155,7 @@ export default function ProductsPage() {
                   <td>
                     <div className="flex items-center space-x-2">
                       <Link
-                        href={`/dashboard/admin/products/${product.id}/edit`}
+                        href={`/admin/products/${product.id}/edit`}
                         className="p-1 text-gray-400 hover:text-blue-600"
                       >
                         <Edit className="h-4 w-4" />
@@ -179,7 +179,7 @@ export default function ProductsPage() {
           <div className="text-center py-8">
             <p className="text-gray-500">No products found</p>
             <Link
-              href="/dashboard/admin/products/new"
+              href="/admin/products/new"
               className="btn btn-primary mt-4"
             >
               Add your first product

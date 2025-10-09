@@ -41,6 +41,18 @@ def api_documentation(request):
                 "list": "GET/POST /api/reports/",
                 "detail": "GET/PUT/DELETE /api/reports/{id}/",
                 "generate": "POST /api/reports/generate/"
+            },
+            "scraping": {
+                "scraped_products": "GET /api/scraping/results/",
+                "scraping_jobs": "GET/POST /api/scraping/jobs/",
+                "job_detail": "GET/PATCH /api/scraping/jobs/{id}/",
+                "websites": "GET/POST /api/scraping/websites/",
+                "website_detail": "GET/PUT/DELETE /api/scraping/websites/{id}/",
+                "product_lists": "GET/POST /api/scraping/product-lists/",
+                "product_list_detail": "GET/PUT/DELETE /api/scraping/product-lists/{id}/",
+                "scraping_stats": "GET /api/scraping/stats/",
+                "trigger_scraping": "POST /api/scraping/trigger/",
+                "cleanup_data": "POST /api/scraping/cleanup/"
             }
         },
         "authentication": {
@@ -67,6 +79,7 @@ urlpatterns = [
     path('api/violations/', include('apps.violations.urls')),
     path('api/cases/', include('apps.cases.urls')),
     path('api/reports/', include('apps.reports.urls')),
+    path('api/scraping/', include('apps.scraping.urls')),
     
     # Legacy API docs (JSON format)
     path('api/docs/json/', api_documentation, name='api_docs'),

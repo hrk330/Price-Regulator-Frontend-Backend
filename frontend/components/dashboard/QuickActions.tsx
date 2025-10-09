@@ -36,7 +36,7 @@ export function QuickActions() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Add Product */}
           <Link
-            href="/dashboard/admin/products/new"
+            href="/admin/products/new"
             className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <div className="p-2 bg-blue-50 rounded-lg">
@@ -79,7 +79,7 @@ export function QuickActions() {
 
           {/* View Products */}
           <Link
-            href="/dashboard/admin/products"
+            href="/admin/products"
             className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <div className="p-2 bg-purple-50 rounded-lg">
@@ -93,7 +93,7 @@ export function QuickActions() {
 
           {/* View Violations */}
           <Link
-            href="/dashboard/admin/violations"
+            href="/admin/violations"
             className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <div className="p-2 bg-red-50 rounded-lg">
