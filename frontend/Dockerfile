@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install ALL dependencies (including dev dependencies for build)
-RUN npm ci --frozen-lockfile
+RUN npm ci
 
 # Copy source code
 COPY . .
@@ -15,7 +15,7 @@ COPY . .
 RUN npm run build
 
 # Install only production dependencies for runtime
-RUN npm ci --only=production --frozen-lockfile && npm cache clean --force
+RUN npm ci --only=production && npm cache clean --force
 
 # Expose port
 EXPOSE 3000
