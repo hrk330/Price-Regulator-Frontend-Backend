@@ -10,7 +10,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# Only ignore Python lib directories, not frontend lib/
+backend/lib/
 lib64/
 parts/
 sdist/
@@ -49,6 +50,9 @@ yarn-error.log*
 .next/
 out/
 build/
+
+# Frontend - Keep lib/ directory
+# frontend/lib/ is needed for the application
 
 # Production
 /build
