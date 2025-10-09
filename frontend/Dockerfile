@@ -1,24 +1,26 @@
+# Use official Node.js 18 Alpine image
 FROM node:18-alpine
 
+# Set working directory inside container
 WORKDIR /app
 
-# Copy package files
+# Copy package.json and package-lock.json first (for caching)
 COPY package*.json ./
 
-# Install ALL dependencies (including dev dependencies for build)
+# Install all dependencies (including devDependencies)
 RUN npm ci
 
-# Copy source code
+# Copy project files into container
 COPY . .
 
-# Build the application
+# Build Next.js app
 RUN npm run build
 
-# Install only production dependencies for runtime
-RUN npm ci --only=production && npm cache clean --force
+# Remove dev dependencies to optimize image size
+RUN npm prune --production
 
-# Expose port
+# Expose Next.js port
 EXPOSE 3000
 
-# Start the application
+# Start Next.js app
 CMD ["npm", "start"]
