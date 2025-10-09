@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { getCurrentUser, User } from '../../lib/auth'
-import { Header } from '../../components/layout/Header'
-import AdminSidebar from '../../components/admin/AdminSidebar'
-import { LoadingSpinner } from '../../components/ui/LoadingSpinner'
+import { getCurrentUser, User } from '@/lib/auth'
+import { Header } from '@/components/layout/Header'
+import AdminSidebar from '@/components/admin/AdminSidebar'
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner'
 import { Menu } from 'lucide-react'
 
 export default function AdminLayout({
