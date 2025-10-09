@@ -5,7 +5,7 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
   },
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, buildId, dev, defaultLoaders, webpack }) => {
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -13,13 +13,20 @@ const nextConfig = {
       }
     }
     
+    // More explicit path resolution
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': path.resolve(__dirname),
-      '@/lib': path.resolve(__dirname, 'lib'),
-      '@/components': path.resolve(__dirname, 'components'),
-      '@/app': path.resolve(__dirname, 'app'),
+      '@': path.resolve(process.cwd()),
+      '@/lib': path.resolve(process.cwd(), 'lib'),
+      '@/components': path.resolve(process.cwd(), 'components'),
+      '@/app': path.resolve(process.cwd(), 'app'),
     }
+    
+    // Ensure proper module resolution
+    config.resolve.modules = [
+      path.resolve(process.cwd(), 'node_modules'),
+      'node_modules'
+    ]
     
     return config
   },
