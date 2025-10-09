@@ -154,7 +154,7 @@ export default function ScrapedProductsPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Products</p>
               <p className="text-2xl font-bold text-gray-900">
-                {scrapedProducts?.length || 0}
+                {scrapedProductsArray.length}
               </p>
             </div>
           </div>
@@ -298,7 +298,7 @@ export default function ScrapedProductsPage() {
       {filteredProducts.length > 0 && (
         <div className="flex justify-between items-center">
           <p className="text-sm text-gray-700">
-            Showing {filteredProducts.length} of {scrapedProducts?.length || 0} products
+            Showing {filteredProducts.length} of {scrapedProductsArray.length} products
           </p>
           <div className="flex space-x-2">
             <button className="btn btn-outline btn-sm">Previous</button>

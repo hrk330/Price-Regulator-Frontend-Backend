@@ -127,7 +127,7 @@ export default function SearchListsPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Lists</p>
               <p className="text-2xl font-bold text-gray-900">
-                {searchLists?.length || 0}
+                {searchListsArray.length}
               </p>
             </div>
           </div>
@@ -169,7 +169,7 @@ export default function SearchListsPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Keywords</p>
               <p className="text-2xl font-bold text-gray-900">
-                {searchLists?.reduce((total, list) => total + (list.keywords?.length || 0), 0) || 0}
+                {searchListsArray.reduce((total, list) => total + (list.products?.length || 0), 0)}
               </p>
             </div>
           </div>

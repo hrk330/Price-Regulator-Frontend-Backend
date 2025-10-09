@@ -19,6 +19,9 @@ export default function ScrapingPage() {
     queryFn: scrapingApi.jobs,
   })
 
+  // Handle paginated response from API
+  const scrapingJobsArray = Array.isArray(scrapingJobs) ? scrapingJobs : scrapingJobs?.results || []
+
   const { data: scrapedProducts, isLoading: productsLoading } = useQuery({
     queryKey: ['scraped-products', { search: searchTerm, marketplace: selectedMarketplace }],
     queryFn: () => scrapingApi.results({ 
@@ -88,11 +91,11 @@ export default function ScrapingPage() {
           <h3 className="text-lg font-medium text-gray-900">Active Scraping Jobs</h3>
         </div>
         <div className="card-body">
-          {scrapingJobs?.length === 0 ? (
+          {scrapingJobsArray.length === 0 ? (
             <p className="text-gray-500">No active scraping jobs</p>
           ) : (
             <div className="space-y-4">
-              {scrapingJobs?.map((job: any) => (
+              {scrapingJobsArray.map((job: any) => (
                 <div key={job.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                   <div>
                     <h4 className="font-medium text-gray-900">{job.marketplace}</h4>
