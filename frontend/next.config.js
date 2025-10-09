@@ -12,11 +12,20 @@ const nextConfig = {
   },
 
   webpack: (config, { isServer }) => {
-    // ✅ Alias for absolute imports
+    // ✅ Alias for absolute imports - more explicit for Vercel
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': path.resolve(__dirname),
+      '@': path.resolve(process.cwd()),
+      '@/lib': path.resolve(process.cwd(), 'lib'),
+      '@/components': path.resolve(process.cwd(), 'components'),
+      '@/app': path.resolve(process.cwd(), 'app'),
     }
+
+    // ✅ Ensure proper module resolution
+    config.resolve.modules = [
+      path.resolve(process.cwd(), 'node_modules'),
+      'node_modules'
+    ]
 
     // ✅ Prevent "fs" issue on client side
     if (!isServer) {
