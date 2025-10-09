@@ -1,15 +1,15 @@
 /** @type {import('next').NextConfig} */
+const path = require('path')
+
 const nextConfig = {
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
   },
-  experimental: {
-    transpilePackages: [],
-  },
+  transpilePackages: [],
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': require('path').resolve(__dirname),
+      '@': path.resolve(__dirname),
     }
     return config
   },
