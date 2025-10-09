@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
+import './global.css'
 import { Providers } from './providers'
 import EnvironmentInfo from '@/components/debug/EnvironmentInfo'
 import '@/lib/api-controls' // Load API controls for console access
