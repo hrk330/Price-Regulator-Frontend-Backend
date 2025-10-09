@@ -121,6 +121,8 @@ SESSION_COOKIE_SAMESITE = 'Lax'
 # CORS settings for production
 CORS_ALLOWED_ORIGINS = [
     "https://your-frontend-domain.com",  # Replace with your actual frontend domain
+    "http://localhost:3000",  # Allow local development
+    "http://127.0.0.1:3000",  # Allow local development
 ]
 
 # Auto-detect Railway domains
@@ -132,6 +134,8 @@ if RAILWAY_PUBLIC_DOMAIN:
 CSRF_TRUSTED_ORIGINS = [
     "https://your-frontend-domain.com",
     "https://price-regulator-frontend-backend-production.up.railway.app",  # Your current Railway domain
+    "http://localhost:3000",  # Allow local development
+    "http://127.0.0.1:3000",  # Allow local development
 ]
 
 if RAILWAY_PUBLIC_DOMAIN:
@@ -148,6 +152,11 @@ CORS_ALLOWED_ORIGINS.extend([
     "https://price-regulator-frontend-backend-production.up.railway.app",
     "https://*.up.railway.app",
 ])
+
+# Add additional CORS origins from environment variable
+ADDITIONAL_CORS_ORIGINS = os.environ.get('ADDITIONAL_CORS_ORIGINS', '')
+if ADDITIONAL_CORS_ORIGINS:
+    CORS_ALLOWED_ORIGINS.extend(ADDITIONAL_CORS_ORIGINS.split(','))
 
 # Allow all origins for development (remove in production)
 if DEBUG:
