@@ -19,7 +19,7 @@ export default function ScrapingWebsitesPage() {
   // Handle paginated response from API
   const websitesArray = Array.isArray(websites) ? websites : websites?.results || []
   
-  const filteredWebsites = websitesArray.filter(website =>
+  const filteredWebsites = websitesArray.filter((website: any) =>
     website.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     website.url.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -158,7 +158,7 @@ export default function ScrapingWebsitesPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Active</p>
               <p className="text-2xl font-bold text-gray-900">
-                {websitesArray.filter(w => w.is_active).length}
+                {websitesArray.filter((w: any) => w.is_active).length}
               </p>
             </div>
           </div>
@@ -172,7 +172,7 @@ export default function ScrapingWebsitesPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Inactive</p>
               <p className="text-2xl font-bold text-gray-900">
-                {websitesArray.filter(w => !w.is_active).length}
+                {websitesArray.filter((w: any) => !w.is_active).length}
               </p>
             </div>
           </div>
@@ -186,7 +186,7 @@ export default function ScrapingWebsitesPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Errors</p>
               <p className="text-2xl font-bold text-gray-900">
-                {websitesArray.filter(w => !w.is_active).length}
+                {websitesArray.filter((w: any) => !w.is_active).length}
               </p>
             </div>
           </div>
@@ -217,7 +217,7 @@ export default function ScrapingWebsitesPage() {
                   </td>
                 </tr>
               ) : (
-                filteredWebsites.map((website) => (
+                filteredWebsites.map((website: any) => (
                   <tr key={website.id}>
                     <td>
                       <div className="flex items-center">

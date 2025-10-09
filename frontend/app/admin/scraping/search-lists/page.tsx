@@ -19,7 +19,7 @@ export default function SearchListsPage() {
   // Handle paginated response from API
   const searchListsArray = Array.isArray(searchLists) ? searchLists : searchLists?.results || []
   
-  const filteredLists = searchListsArray.filter(list =>
+  const filteredLists = searchListsArray.filter((list: any) =>
     list.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     list.description?.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -141,7 +141,7 @@ export default function SearchListsPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Active</p>
               <p className="text-2xl font-bold text-gray-900">
-                {searchListsArray.filter(l => l.is_active).length}
+                {searchListsArray.filter((l: any) => l.is_active).length}
               </p>
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function SearchListsPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Inactive</p>
               <p className="text-2xl font-bold text-gray-900">
-                {searchListsArray.filter(l => !l.is_active).length}
+                {searchListsArray.filter((l: any) => !l.is_active).length}
               </p>
             </div>
           </div>
@@ -169,7 +169,7 @@ export default function SearchListsPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Keywords</p>
               <p className="text-2xl font-bold text-gray-900">
-                {searchListsArray.reduce((total, list) => total + (list.products?.length || 0), 0)}
+                {searchListsArray.reduce((total: number, list: any) => total + (list.products?.length || 0), 0)}
               </p>
             </div>
           </div>
@@ -199,7 +199,7 @@ export default function SearchListsPage() {
                   </td>
                 </tr>
               ) : (
-                filteredLists.map((list) => (
+                filteredLists.map((list: any) => (
                   <tr key={list.id}>
                     <td>
                       <div className="flex items-center">
@@ -214,7 +214,7 @@ export default function SearchListsPage() {
                     </td>
                     <td>
                       <div className="flex flex-wrap gap-1">
-                        {list.keywords?.slice(0, 3).map((keyword, index) => (
+                        {list.keywords?.slice(0, 3).map((keyword: any, index: number) => (
                           <span
                             key={index}
                             className="badge badge-info text-xs"

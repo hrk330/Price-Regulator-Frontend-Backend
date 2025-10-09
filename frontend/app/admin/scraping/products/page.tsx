@@ -19,7 +19,7 @@ export default function ScrapedProductsPage() {
   // Handle paginated response from API
   const scrapedProductsArray = Array.isArray(scrapedProducts) ? scrapedProducts : scrapedProducts?.results || []
   
-  const filteredProducts = scrapedProductsArray.filter(product => {
+  const filteredProducts = scrapedProductsArray.filter((product: any) => {
     const matchesSearch = product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          product.marketplace.toLowerCase().includes(searchTerm.toLowerCase())
     // Since there's no status field in the backend, we'll use availability instead
@@ -168,7 +168,7 @@ export default function ScrapedProductsPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Active</p>
               <p className="text-2xl font-bold text-gray-900">
-                {scrapedProductsArray.filter(p => p.availability).length}
+                {scrapedProductsArray.filter((p: any) => p.availability).length}
               </p>
             </div>
           </div>
@@ -182,7 +182,7 @@ export default function ScrapedProductsPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Violations</p>
               <p className="text-2xl font-bold text-gray-900">
-                {scrapedProductsArray.filter(p => !p.availability).length}
+                {scrapedProductsArray.filter((p: any) => !p.availability).length}
               </p>
             </div>
           </div>
@@ -196,7 +196,7 @@ export default function ScrapedProductsPage() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Inactive</p>
               <p className="text-2xl font-bold text-gray-900">
-                {scrapedProductsArray.filter(p => !p.availability).length}
+                {scrapedProductsArray.filter((p: any) => !p.availability).length}
               </p>
             </div>
           </div>
@@ -227,7 +227,7 @@ export default function ScrapedProductsPage() {
                   </td>
                 </tr>
               ) : (
-                filteredProducts.map((product) => (
+                filteredProducts.map((product: any) => (
                   <tr key={product.id}>
                     <td>
                       <div className="flex items-center">

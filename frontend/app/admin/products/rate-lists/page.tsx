@@ -81,7 +81,7 @@ export default function RateListsPage() {
   // Handle paginated response from API
   const rateListsArray = Array.isArray(rateLists) ? rateLists : rateLists?.results || []
   
-  const filteredRateLists = rateListsArray.filter(rateList =>
+  const filteredRateLists = rateListsArray.filter((rateList: any) =>
     rateList.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     rateList.description?.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -196,7 +196,7 @@ export default function RateListsPage() {
                   </td>
                 </tr>
               ) : (
-                filteredRateLists.map((rateList) => (
+                filteredRateLists.map((rateList: any) => (
                   <tr key={rateList.id}>
                     <td>
                       <div className="flex items-center">
