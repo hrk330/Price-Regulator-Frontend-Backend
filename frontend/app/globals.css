@@ -1,155 +1,286 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Import Tailwind CSS */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@layer base {
-    html {
-        font-family: system-ui, sans-serif;
-    }
+/* Custom styles */
+html {
+    font-family: system-ui, sans-serif;
 }
 
-@layer components {
-    .input {
-        @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
-    }
+/* Input styles */
+.input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    outline: none;
+    transition: all 0.15s ease-in-out;
+}
 
-    .btn {
-        @apply px-4 py-2 rounded-md font-medium transition-colors;
-    }
+/* Input with left icon */
+.input.pl-10 {
+    padding-left: 2.5rem;
+}
 
-    .btn-primary {
-        @apply bg-blue-600 text-white hover:bg-blue-700;
-    }
+/* Input with right icon */
+.input.pr-10 {
+    padding-right: 2.5rem;
+}
 
-    .btn-secondary {
-        @apply bg-gray-200 text-gray-900 hover:bg-gray-300;
-    }
+/* Input with both left and right icons */
+.input.pl-10.pr-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
 
-    .btn-danger {
-        @apply bg-red-600 text-white hover:bg-red-700;
-    }
+.input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
 
-    .btn-success {
-        @apply bg-green-600 text-white hover:bg-green-700;
-    }
+/* Button styles */
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.15s ease-in-out;
+    border: none;
+    cursor: pointer;
+}
 
-    .card {
-        @apply bg-white rounded-lg shadow-sm border border-gray-200;
-    }
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+}
 
-    .card-header {
-        @apply px-6 py-4 border-b border-gray-200;
-    }
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
 
-    .card-body {
-        @apply px-6 py-4;
-    }
+.btn-secondary {
+    background-color: #e5e7eb;
+    color: #111827;
+}
 
-    .card-footer {
-        @apply px-6 py-4 border-t border-gray-200;
-    }
+.btn-secondary:hover {
+    background-color: #d1d5db;
+}
 
-    .form-input {
-        @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
-    }
+.btn-danger {
+    background-color: #dc2626;
+    color: white;
+}
 
-    .form-label {
-        @apply block text-sm font-medium text-gray-700 mb-1;
-    }
+.btn-danger:hover {
+    background-color: #b91c1c;
+}
 
-    .form-error {
-        @apply text-red-600 text-sm mt-1;
-    }
+.btn-success {
+    background-color: #16a34a;
+    color: white;
+}
 
-    .badge {
-        @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
-    }
+.btn-success:hover {
+    background-color: #15803d;
+}
 
-    .badge-primary {
-        @apply bg-blue-100 text-blue-800;
-    }
+/* Card styles */
+.card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
 
-    .badge-success {
-        @apply bg-green-100 text-green-800;
-    }
+.card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
 
-    .badge-warning {
-        @apply bg-yellow-100 text-yellow-800;
-    }
+.card-body {
+    padding: 1.5rem;
+}
 
-    .badge-danger {
-        @apply bg-red-100 text-red-800;
-    }
+.card-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+}
 
-    .badge-info {
-        @apply bg-gray-100 text-gray-800;
-    }
+/* Form styles */
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.25rem;
+}
 
-    .table {
-        @apply min-w-full divide-y divide-gray-200;
-    }
+.form-error {
+    color: #dc2626;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
 
-    .table-header {
-        @apply bg-gray-50;
-    }
+/* Badge styles */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
 
-    .table-header-cell {
-        @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
-    }
+.badge-primary {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
 
-    .table-body {
-        @apply bg-white divide-y divide-gray-200;
-    }
+.badge-success {
+    background-color: #dcfce7;
+    color: #166534;
+}
 
-    .table-row {
-        @apply hover:bg-gray-50;
-    }
+.badge-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+}
 
-    .table-cell {
-        @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
-    }
+.badge-danger {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
 
-    .sidebar {
-        @apply bg-gray-900 text-white;
-    }
+.badge-info {
+    background-color: #f3f4f6;
+    color: #374151;
+}
 
-    .sidebar-item {
-        @apply flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors;
-    }
+/* Table styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-    .sidebar-item-active {
-        @apply bg-gray-800 text-white;
-    }
+.table-header {
+    background-color: #f9fafb;
+}
 
-    .sidebar-item-inactive {
-        @apply text-gray-300 hover:bg-gray-700 hover:text-white;
-    }
+.table-header-cell {
+    padding: 0.75rem 1.5rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
 
-    .stats-card {
-        @apply bg-white overflow-hidden shadow rounded-lg;
-    }
+.table-body {
+    background-color: white;
+}
 
-    .stats-card-header {
-        @apply px-4 py-5 sm:p-6;
-    }
+.table-row:hover {
+    background-color: #f9fafb;
+}
 
-    .stats-card-title {
-        @apply text-sm font-medium text-gray-500 truncate;
-    }
+.table-cell {
+    padding: 1rem 1.5rem;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    color: #111827;
+}
 
-    .stats-card-value {
-        @apply mt-1 text-3xl font-semibold text-gray-900;
-    }
+/* Sidebar styles */
+.sidebar {
+    background-color: #111827;
+    color: white;
+}
 
-    .loading-spinner {
-        @apply animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600;
-    }
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    transition: all 0.15s ease-in-out;
+}
 
-    .loading-spinner-sm {
-        @apply animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600;
-    }
+.sidebar-item-active {
+    background-color: #1f2937;
+    color: white;
+}
 
-    .loading-spinner-lg {
-        @apply animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600;
+.sidebar-item-inactive {
+    color: #d1d5db;
+}
+
+.sidebar-item-inactive:hover {
+    background-color: #374151;
+    color: white;
+}
+
+/* Stats card styles */
+.stats-card {
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+}
+
+.stats-card-header {
+    padding: 1.25rem 1.5rem;
+}
+
+.stats-card-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.stats-card-value {
+    margin-top: 0.25rem;
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Loading spinner styles */
+.loading-spinner {
+    animation: spin 1s linear infinite;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    border: 2px solid transparent;
+    border-bottom-color: #2563eb;
+}
+
+.loading-spinner-sm {
+    animation: spin 1s linear infinite;
+    border-radius: 50%;
+    height: 1rem;
+    width: 1rem;
+    border: 2px solid transparent;
+    border-bottom-color: #2563eb;
+}
+
+.loading-spinner-lg {
+    animation: spin 1s linear infinite;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    border: 2px solid transparent;
+    border-bottom-color: #2563eb;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
 }
