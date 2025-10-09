@@ -1,8 +1,8 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { violationsApi, casesApi, scrapingApi, productsApi } from '@/lib/api'
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner'
+import { violationsApi, casesApi, scrapingApi, productsApi } from '../../lib/api'
+import { LoadingSpinner } from '../../components/ui/LoadingSpinner'
 import { AlertTriangle, FileText, Package, Search, Users, BarChart3, TrendingUp, Activity } from 'lucide-react'
 import Link from 'next/link'
 

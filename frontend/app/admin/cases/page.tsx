@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { casesApi } from '@/lib/api'
-import { formatCurrency, formatDate } from '@/lib/utils'
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner'
+import { casesApi } from '../../lib/api'
+import { formatCurrency, formatDate } from '../../lib/utils'
+import { LoadingSpinner } from '../../components/ui/LoadingSpinner'
 import { Plus, Edit, Eye, CheckCircle, XCircle, Search, Filter } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import Link from 'next/link'
