@@ -120,6 +120,7 @@ SESSION_COOKIE_SAMESITE = 'Lax'
 
 # CORS settings for production
 CORS_ALLOWED_ORIGINS = [
+    "https://price-regulator-frontend-backend-dtg9fycf0.vercel.app",  # Vercel deployment
     "https://your-frontend-domain.com",  # Replace with your actual frontend domain
     "http://localhost:3000",  # Allow local development
     "http://127.0.0.1:3000",  # Allow local development
@@ -132,6 +133,7 @@ if RAILWAY_PUBLIC_DOMAIN:
 
 # Add Railway domains to trusted origins for CSRF
 CSRF_TRUSTED_ORIGINS = [
+    "https://price-regulator-frontend-backend-dtg9fycf0.vercel.app",  # Vercel deployment
     "https://your-frontend-domain.com",
     "https://price-regulator-frontend-backend-production.up.railway.app",  # Your current Railway domain
     "http://localhost:3000",  # Allow local development
@@ -147,10 +149,11 @@ CSRF_TRUSTED_ORIGINS.extend([
     "https://*.railway.app",     # Allow Railway domains
 ])
 
-# CORS settings for Railway
+# CORS settings for Railway and Vercel
 CORS_ALLOWED_ORIGINS.extend([
     "https://price-regulator-frontend-backend-production.up.railway.app",
     "https://*.up.railway.app",
+    "https://*.vercel.app",  # Allow all Vercel subdomains
 ])
 
 # Add additional CORS origins from environment variable
